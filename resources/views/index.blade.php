@@ -1,20 +1,37 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="pt_br">
 <head>
-    <title>AQUI TEM PIZZA</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
+<!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="copyright" content="Serra Development" />
+    <title>Aqui Tem Pizza</title>  
+    
+    <meta name="keywords" content="Aqui tem pizza, pizzaria, delivery de pizza, pizzaria valença, pizzaria valenca rj, aquitempizza" />
+    <meta name="description" content="O melhor delivery de pizza é aqui! Venha conhecer e faça já o seu pedido! Aqui Tem Pizza Delivery.">
+    <meta name="author" content="contato@serradev.com.br">
+    <meta name="subject" content="Realize seu pedido pelo nosso site. Aqui tem pizza, o melhor delivery de pizza da cidade!">
+    <meta name="url" content="http://www.aquitempizza.com">
+    <meta name="language" content="pt_br">
+    <meta name="Classification" content="WebSites">
+    <meta name="image" content="http://www.aquitempizza.com.br/images/aquitempizza.png"/>
 
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
-    <link rel="stylesheet" href="fonts/beyond_the_mountains-webfont.css" type="text/css"/>
+    
+    <!-- Open Graph meta -->
+    <meta property="og:title" content="Serra Development"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="http://www.aquitempizza.com.br/images/aquitempizza.png"/>
+    <meta property="og:description" content="O melhor delivery de pizza é aqui! Venha conhecer e faça já o seu pedido! Aqui Tem Pizza Delivery."/>
+    <meta property="og:email" content="contato@serradev.com.br"/>
+    <meta property="og:phone_number" content="(24)99873-4138"/>
+    <meta property="og:site_name" content="Aqui tem pizza" />
 
-    <!-- Stylesheets -->
-    <link href="plugin-frameworks/bootstrap.min.css" rel="stylesheet">
-    <link href="plugin-frameworks/swiper.css" rel="stylesheet">
-    <link href="fonts/ionicons.css" rel="stylesheet">
-    <link href="common/styles.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="http://www.agenciadedigitadores.online/images/aquitempizza.png" type="image/x-icon" />
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
 
     <style type="text/css">
 
@@ -60,7 +77,7 @@
                     <div >
                         <a class="logo" href="#"><img src="images/aquitempizza.png" alt="Logo"></a>
                     </div>
-                    <div class="right-area" style="position: fixed; right: 0">
+                    <div class="right-area" style="position: fixed; bottom: 0;right: 0;left: 0">
                         <cart></cart>
 
                     </div><!-- right-area -->
