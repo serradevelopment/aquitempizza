@@ -884,7 +884,8 @@ section {
 
 .bg-1 { background: url(../images/slider_1_1920_1200.jpg) no-repeat center; background-size: cover; }
 
-.bg-2 {   background: url(../images/story_bg_1.png) no-repeat center; background-size: 100%; }
+.bg-2 {   background: url(../images/ingredientes.png) no-repeat center; background-size: 100%; margin-top: -200px;
+    margin-left: -60px;}
 
 .bg-3 {  background: url(../images/story_bg_2.png) no-repeat center;  background-size: 100%; }
 

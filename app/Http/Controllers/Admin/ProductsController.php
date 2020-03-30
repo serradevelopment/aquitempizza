@@ -56,7 +56,7 @@ class ProductsController extends Controller
             $request->file('image')->move(public_path('/files/products'), sprintf('%s.%s', $product->id, $extension));
         }
 
-        return redirect()->route('home')->with('flash.success', 'Usuário salvo com sucesso');
+        return redirect()->route('home')->with('flash.success', 'Produto cadastrado com sucesso');
     }
 
     /**
@@ -90,7 +90,26 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $data = $request->all();
+
+        $data['category'] = Product::categories()[$data['category']];
+        $data['value']    = $this->parseCurrency($data['value']);
+        $product->fill($data);
+
+
+        if ($request->hasFile('image')) {
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            $product->img_extension = $extension;
+        }
+
+        $product->save();
+
+        if ($request->hasFile('image')) {
+            $request->file('image')->move(public_path('/files/products'), sprintf('%s.%s', $product->id, $extension));
+        }
+
+        return redirect()->route('home')->with('flash.success', 'Produto editado com sucesso');
     }
 
     /**

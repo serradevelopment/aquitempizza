@@ -4,9 +4,6 @@
 {{-- Seus estilos específicos de página aqui --}}
 @endsection
 
-@section('header-title')
-<h1>Início</h1>
-@stop
 
 
 
@@ -31,7 +28,12 @@
 					{{ Form::bsText('description', 'Descrição') }}
 					{{ Form::bsText('value', 'Preço',['class'=>'money-mask']) }}
 					{{ Form::bsFile('image', 'Foto') }}
-					{{ Form::bsSelect('category', 'Categoria', App\Product::categories(),['placeholder' => 'Selecione uma opção']) }}
+					{{ Form::bsSelect('category', 'Categoria', App\Product::categories(),['placeholder' => 'Selecione uma opção','class'=>'select-2']) }}
+
+					{{ Form::bsSelect('tag', 'Adicione uma etiqueta', ['PROMOÇÃO'=>'PROMOÇÃO','ESPECIAL'=>'ESPECIAL','FRETE GRÁTIS'=>'FRETE GRÁTIS'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-create','class'=>'select-2']) }}
+
+					{{ Form::bsSelect('is_top', 'Mais vendido?', ['NÃO','SIM'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-create']) }}
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -46,7 +48,7 @@
 <!-- Modal EDITAR PRODUTO-->
 <div class="modal fade" id="edit-product" tabindex="-1" role="dialog" aria-labelledby="edit-product" aria-hidden="true">
 	<div class="modal-dialog" role="document">
-		<form action="{{route('products.store')}}" method="POST"  enctype="multipart/form-data">
+		<form action="" method="POST" id="form-edit-product"  enctype="multipart/form-data">
 
 			<div class="modal-content">
 				<div class="modal-header">
@@ -57,13 +59,19 @@
 				</div>
 				<div class="modal-body">
 					<input type="hidden" name="_token" value="{{csrf_token()}}">
+					<input type="hidden" name="_method" value="PUT">
 					<input type="hidden" name="id-product-edit">
 					{{ Form::bsText('name', 'Nome',['id'=>'name-product-edit']) }}
 					{{ Form::bsText('description', 'Descrição',['id'=>'description-product-edit']) }}
 					{{ Form::bsText('value', 'Preço',['class'=>'money-mask','id'=>'value-product-edit']) }}
 					<img id="img-product-edit" style="height: 120px; width: auto">
 					{{ Form::bsFile('image', 'Foto') }}
-					{{ Form::bsSelect('category', 'Categoria', App\Product::categories(),['placeholder' => 'Selecione uma opção','id'=>'category-product-edit']) }}
+
+					{{ Form::bsSelect('category', 'Categoria', App\Product::categories(),['placeholder' => 'Selecione uma opção','id'=>'category-product-edit','class'=>'select-2']) }}
+
+					{{ Form::bsSelect('tag', 'Adicione uma etiqueta', ['PROMOÇÃO'=>'PROMOÇÃO','ESPECIAL'=>'ESPECIAL','FRETE GRÁTIS'=>'FRETE GRÁTIS'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-edit','class'=>'select-2']) }}
+
+					{{ Form::bsSelect('is_top', 'Mais vendido?', ['NÃO','SIM'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-edit']) }}
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -97,6 +105,46 @@
 		</div>
 	</div>
 
+	<div class="col-sm-6 col-md-3">
+		<div class="card card-stats card-danger card-round">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-5">
+						<div class="icon-big text-center">
+							<i class="fas fa-pizza-slice"></i>
+						</div>
+					</div>
+					<div class="col col-stats">
+						<div class="numbers">
+							<p class="card-category">PIZZAS</p>
+							<h4 class="card-title">{{count(App\Product::where('category','PIZZA')->get())}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6 col-md-3">
+		<div class="card card-stats card-danger card-round">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-5">
+						<div class="icon-big text-center">
+							<i class="fas fa-glass-whiskey"></i>
+						</div>
+					</div>
+					<div class="col col-stats">
+						<div class="numbers">
+							<p class="card-category">BEBIDAS</p>
+							<h4 class="card-title">{{count(App\Product::where('category','BEBEIDA')->get())}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 
 <h1>Produtos</h1>
@@ -105,7 +153,6 @@
 	<button data-toggle="modal" data-target="#create-product" class="btn btn-primary"><i class="fa fa-plus"></i> Novo Produto</button>
 	@endcan
 </div>
-<div class="row">
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
@@ -167,7 +214,6 @@
 		</div>
 	</div>
 </div>
-</div>
 @stop
 
 @section('js')
@@ -181,7 +227,10 @@
 		$('#description-product-edit').val(product.description);
 		$('#value-product-edit').val(product.value);
 		$('#id-product-edit').val(product.id);
+		$('#is_top-product-edit').val(product.is_top);
+		$('#tag-product-edit').val(product.tag);
 		$('#img-product-edit').attr('src','files/products/'+product.id+'.'+product.img_extension);
+		$('#form-edit-product').attr('action','/admin/products/'+product.id);
 
 		///
 	}
