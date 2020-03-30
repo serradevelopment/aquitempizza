@@ -41,6 +41,7 @@
     <link href="plugin-frameworks/swiper.css" rel="stylesheet">
     <link href="fonts/ionicons.css" rel="stylesheet">
     <link href="common/styles.css" rel="stylesheet">
+    <link rel="manifest" href="http://aquitempizza.com/manifest.json">
     @laravelPWA
     <style type="text/css">
 
@@ -251,12 +252,12 @@
 
 
         <script type="text/javascript">
-            $(window).on('load',function(){
-                setInterval(function(){ 
+            $(document).ready(function(){
+               setInterval(function(){ 
                     $("#pre-load").css('display','none');
                     $(".body").css('display','block');
-                }, 2000);
-            })
+                }, 2000); 
+           });
         </script>
 
 
