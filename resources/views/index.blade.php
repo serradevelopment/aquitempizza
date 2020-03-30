@@ -41,7 +41,7 @@
     <link href="plugin-frameworks/swiper.css" rel="stylesheet">
     <link href="fonts/ionicons.css" rel="stylesheet">
     <link href="common/styles.css" rel="stylesheet">
-    <link rel='manifest' href='/manifest.json'>
+    <link rel='manifest' href='manifest.json'>
     <style type="text/css">
 
         #style-3::-webkit-scrollbar-track
