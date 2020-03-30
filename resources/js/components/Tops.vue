@@ -6,7 +6,7 @@
 
                 <div class="ïmg-200x mlr-auto pos-relative" v-if="p.tag">
                     <h6 class="ribbon-cont"><div class="ribbon primary"></div><b>{{p.tag}}</b></h6>
-                    <img src="images/seller-2-200x200.png" alt="">
+                    <img :src="'files/products/'+p.id+'.'+p.img_extension" alt="">
                 </div>
 
                 <h5 class="mt-20">{{p.name}}</h5>
@@ -28,6 +28,9 @@
                    $(this).removeClass("on-add");
                });
             }
+        },
+        mounted(){
+            console.log(this.products);
         }
     }
 </script>

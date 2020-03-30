@@ -23,6 +23,7 @@
 
 Vue.component('tops', require('./components/Tops.vue').default);
 Vue.component('cart', require('./components/Cart.vue').default);
+Vue.component('product-list', require('./components/ProductList.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

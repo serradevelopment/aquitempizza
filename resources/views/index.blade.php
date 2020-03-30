@@ -16,6 +16,26 @@
     <link href="fonts/ionicons.css" rel="stylesheet">
     <link href="common/styles.css" rel="stylesheet">
 
+    <style type="text/css">
+
+        #style-3::-webkit-scrollbar-track
+        {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            background-color: #F5F5F5;
+        }
+
+        #style-3::-webkit-scrollbar
+        {
+            width: 6px;
+            background-color: #F5F5F5;
+        }
+
+        #style-3::-webkit-scrollbar-thumb
+        {
+            background-color: #000000;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -158,22 +178,7 @@
                         </div><!--col-sm-12-->
                     </div><!--row-->
 
-                    <div class="row">
-                        @foreach(App\Product::where('locked',false)->get() as $p)
-                        <div class="col-md-5 food-menu {{$p->category}}" style=" margin: 10px;
-                        box-shadow: inset 1px 0px 4px 1px;padding-top:15px ">
-                        <div class="sided-90x mb-30 ">
-                            <div class="s-left"><img class="br-3" src="/files/products/{{$p->id}}.{{$p->img_extension}}" alt="{{$p->name}}"></div><!--s-left-->
-                            <div class="s-right">
-                                <h5 class="mb-10"><b>{{$p->name}}</b><b class="color-primary float-right">R$ {{number_format($p->value,2)}}</b></h5>
-                                <p class="pr-70">{{$p->description}}</p>
-                            </div><!--s-right-->
-                        </div><!-- sided-90x -->
-                    </div><!-- food-menu -->
-                    @endforeach
-
-
-                </div><!-- container -->
+                    <product-list :products="{{json_encode(App\Product::where('locked',false)->get())}}"></product-list>
             </section>
 
         </div>
