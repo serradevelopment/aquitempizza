@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="pt_br">
 <head>
-<!-- Basic -->
+    <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -32,7 +32,16 @@
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/beyond_the_mountains-webfont.css" type="text/css"/>
 
+    <!-- Stylesheets -->
+    <link href="plugin-frameworks/bootstrap.min.css" rel="stylesheet">
+    <link href="plugin-frameworks/swiper.css" rel="stylesheet">
+    <link href="fonts/ionicons.css" rel="stylesheet">
+    <link href="common/styles.css" rel="stylesheet">
+    
     <style type="text/css">
 
         #style-3::-webkit-scrollbar-track
@@ -196,60 +205,60 @@
                     </div><!--row-->
 
                     <product-list :products="{{json_encode(App\Product::where('locked',false)->get())}}"></product-list>
-            </section>
+                </section>
 
+            </div>
+
+            <footer class="pb-50  pt-70 pos-relative">
+                <div class="pos-top triangle-bottom"></div>
+                <div class="container-fluid">
+                    <a href="#"><img src="images/aquitempizza.png" style="height: 150px; width: auto" alt="Logo"></a>
+
+                    <div class="pt-30">
+                        <p class="underline-secondary"><b>Endereço:</b></p>
+                        <p>Rodovia RJ 145, nº 26364, Canteiro </p>
+                    </div>
+
+                    <div class="pt-30">
+                        <p class="underline-secondary mb-10"><b>Telefone:</b></p>
+                        <a href="tel:+55 24 998160954 ">24 99816-0954 </a>
+                    </div>
+
+                    <div class="pt-30">
+                        <p class="underline-secondary mb-10"><b>Email:</b></p>
+                        <a href="mailto:aquitempizzas@gmail.com"> aquitempizzas@gmail.com</a>
+                    </div>
+
+                    <ul class="icon mt-30">
+                        <li><a href="https://www.facebook.com/aquitempizza" target="_blank"><i class="ion-social-facebook"></i></a></li>
+                    </ul>
+
+                    <p class="color-light font-9 mt-50 mt-sm-30">
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                        Todos direitos reservados | Este site foi desenvolvido por  
+                        <a href="https://www.serradev.com.br" target="_blank">Serra Development</a> 
+                    </p>
+                </div><!-- container -->
+            </footer>
         </div>
 
-        <footer class="pb-50  pt-70 pos-relative">
-            <div class="pos-top triangle-bottom"></div>
-            <div class="container-fluid">
-                <a href="#"><img src="images/aquitempizza.png" style="height: 150px; width: auto" alt="Logo"></a>
+        <!-- SCIPTS -->
+        <script src="js/app.js"></script>
 
-                <div class="pt-30">
-                    <p class="underline-secondary"><b>Endereço:</b></p>
-                    <p>Rodovia RJ 145, nº 26364, Canteiro </p>
-                </div>
-
-                <div class="pt-30">
-                    <p class="underline-secondary mb-10"><b>Telefone:</b></p>
-                    <a href="tel:+55 24 998160954 ">24 99816-0954 </a>
-                </div>
-
-                <div class="pt-30">
-                    <p class="underline-secondary mb-10"><b>Email:</b></p>
-                    <a href="mailto:aquitempizzas@gmail.com"> aquitempizzas@gmail.com</a>
-                </div>
-
-                <ul class="icon mt-30">
-                    <li><a href="https://www.facebook.com/aquitempizza" target="_blank"><i class="ion-social-facebook"></i></a></li>
-                </ul>
-
-                <p class="color-light font-9 mt-50 mt-sm-30">
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                    Todos direitos reservados | Este site foi desenvolvido por  
-                    <a href="https://www.serradev.com.br" target="_blank">Serra Development</a> 
-                </p>
-            </div><!-- container -->
-        </footer>
-    </div>
-
-    <!-- SCIPTS -->
-    <script src="js/app.js"></script>
-
-    <script src="plugin-frameworks/swiper.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script src="common/scripts.js"></script>
+        <script src="plugin-frameworks/swiper.js"></script>
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <script src="common/scripts.js"></script>
 
 
-    <script type="text/javascript">
-        $(window).on('load',function(){
-            setInterval(function(){ 
-                $("#pre-load").css('display','none');
-                $(".body").css('display','block');
-            }, 2000);
-        })
-    </script>
+        <script type="text/javascript">
+            $(window).on('load',function(){
+                setInterval(function(){ 
+                    $("#pre-load").css('display','none');
+                    $(".body").css('display','block');
+                }, 2000);
+            })
+        </script>
 
 
-</body>
-</html>
+    </body>
+    </html>
