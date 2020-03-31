@@ -3,9 +3,10 @@
 <head>
     <!-- Basic -->
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="copyright" content="Serra Development" />
+    <meta name="copyright" content="Aqui Tem Pizza" />
     <title>Aqui Tem Pizza</title>  
     
     <meta name="keywords" content="Aqui tem pizza, pizzaria, delivery de pizza, pizzaria valença, pizzaria valenca rj, aquitempizza" />
@@ -197,10 +198,10 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <ul class="selecton brdr-b-primary mb-70">
-                                <li><a class="active" href="#" data-select="*"><b>TUDO</b></a></li>
-                                <li><a href="#" data-select="PIZZAS"><b>PIZZAS</b></a></li>
-                                <li><a href="#" data-select="BEBIDAS"><b>BEBIDAS</b></a></li>
+                            <ul class="selecton brdr-b-primary mb-15">
+                                <li><a class="active" href="#" data-select="PIZZAS"><b>PIZZAS</b></a></li>
+                                <li><a href="#" id="bebidas" data-select="BEBIDAS"><b>BEBIDAS</b></a></li>
+                                <li><a  href="#" id="montar" data-select="MONTAR"><b>MONTE SUA PIZZA</b></a></li>
                             </ul>
                         </div><!--col-sm-12-->
                     </div><!--row-->
@@ -253,13 +254,13 @@
 
         <script type="text/javascript">
             $(document).ready(function(){
-               setInterval(function(){ 
-                    $("#pre-load").css('display','none');
-                    $(".body").css('display','block');
-                }, 2000); 
-           });
-        </script>
+             setInterval(function(){ 
+                $("#pre-load").css('display','none');
+                $(".body").css('display','block');
+            }, 2000); 
+         });
+     </script>
 
 
-    </body>
-    </html>
+ </body>
+ </html>

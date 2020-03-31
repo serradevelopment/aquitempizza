@@ -6,7 +6,7 @@
     </button>
 
     <ul class="dropdown-menu dropdown-cart" aria-labelledby="dropdownMenu2" role="menu" v-if="productsInCart.length != 0">
-        <li v-for="p,i in productsInCart">
+        <li v-for="p,i in productsInCart" style="box-shadow: 1px 1px 4px 0px;">
             <span class="item">
                 <span class="item-left">
                     <!-- <img src="http://lorempixel.com/50/50/" alt="" /> -->
@@ -15,7 +15,7 @@
                         <span>R$ {{p.value.toFixed(2)}}</span>
                     </span>
                 </span>
-                <span class="item-right">
+                <span class="item-right" style="margin: 10px;">
                     <button class="btn btn-xs btn-danger pull-right" @click="removeFromCart(p)">x</button>
                 </span>
             </span>
@@ -130,7 +130,6 @@
               }
           },
           sendOrder(){
-            console.log(this.productsInCart);
             var text = '----------------NOVO PEDIDO-------------\n';
 
             var pizzas  =  'Pizzas:\n';
@@ -151,7 +150,7 @@
             text += '----------------------------------------------\n';
             text += 'TOTAL: R$'+this.getTotalCartValue;
             if(this.troco != 0){
-                text += ' | Troco: R$'+this.troco;
+                text += ' | Troco para: R$'+this.troco;
             }
             if(this.is_card){
                 text += '\n'+card
@@ -163,7 +162,7 @@
         }
     },
     mounted() {
-        console.log(this.productsInCart.length)
+        // console.log(this.productsInCart.length)
     }
 }
 </script>
@@ -204,7 +203,6 @@
     ul.dropdown-cart li button{
         display: block;
         text-align: center;
-        margin: auto;
     }
 
     ul.dropdown-cart li .item:hover{
