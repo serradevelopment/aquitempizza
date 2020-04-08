@@ -161,7 +161,6 @@ export default {
           total: parseFloat(this.getTotalCartValue)
         })
         .then(response => {
-          console.log(response);
         });
     },
     sendOrder() {
@@ -194,9 +193,17 @@ export default {
         if (this.is_card) {
           text += "\n" + card;
         }
+        text += "----------------------------------------------\n";
+        text += "Nome: "+this.user.name+"\n";
+        text += "Endereço: "+this.user.address+"\n";
+        text += "Bairro: "+this.user.neighborhood.neighborhood+"\n";
+        text += "Frete: R$ "+this.user.neighborhood.value.toFixed(2)+"\n";
+        text += "----------------------------------------------\n";
+
         text = window.encodeURIComponent(text);
         var url =
-          "https://api.whatsapp.com/send?phone=5524998160954&text=" + text;
+          "https://api.whatsapp.com/send?phone=5524998734138&text=" + text;
+          // "https://api.whatsapp.com/send?phone=5524998160954&text=" + text;
         var win = window.open(url, "_blank");
         win.focus();
       }
@@ -212,8 +219,6 @@ export default {
     $(document).on("click", ".dropdown-menu", function(e) {
       e.stopPropagation();
     });
-    
-    console.log(this.$cookies.get("user"));
   }
 };
 </script>
