@@ -89,7 +89,7 @@
                         <a class="logo" href="#"><img src="images/aquitempizza.png" alt="Logo"></a>
                     </div>
                     <div class="right-area" style="position: fixed; bottom: 0;right: 0;left: 0">
-                        <cart></cart>
+                        <cart :freights="{{ json_encode(App\Freight::all()) }}"></cart>
 
                     </div><!-- right-area -->
 
@@ -181,10 +181,7 @@
                         <img class="heading-img" src="images/heading_logo.png" alt="">
                         <h2>Mais vendidos</h2>
                     </div>
-
                     <tops :products="{{App\Product::where('is_top',true)->get()->toJson()}}"></tops>
-
-
                 </div>
             </section>
 

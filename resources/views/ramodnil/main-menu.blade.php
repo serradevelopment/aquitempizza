@@ -3,7 +3,7 @@ $routeArray = app('request')->route()->getAction();
 $controllerAction = class_basename($routeArray['controller']);
 list($controller, $action) = explode('@', $controllerAction);
 @endphp
-
+{{-- DASHBOARD --}}
 @php
 $class = '';
 
@@ -19,6 +19,23 @@ $class = 'active';
     </a>
 </li>
 
+{{-- FRETE --}}
+@php
+$class = '';
+
+if ($controller == 'FreightsController') {
+$class = 'active';
+}
+@endphp
+
+<li class="nav-item {{ $class }}">
+    <a href="{{ route('freights.index') }}" class="nav-link ">
+        <i class="fas fa-motorcycle"></i>
+        <p>Fretes</p>
+    </a>
+</li>
+
+{{-- USUARIO --}}
 @php
 $class = 'collapsed';
 

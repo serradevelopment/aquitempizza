@@ -83,21 +83,94 @@
 	</div>
 </div>
 
+<!-- Modal VISUALIZAR DETALHES DO PEDIDO-->
+<div class="modal fade" id="show-order" tabindex="-1" role="dialog" aria-labelledby="show-order" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">PEDIDO #<span id="order-id"></span></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6">
+							<h4>Cliente</h4>
+							<label><b>Nome: </b></label><p id="order-client_name"></p>
+							<label><b>Endereço: </b></label><p id="order-client_address"></p>
+							<label><b>Bairro: </b></label><p id="order-neighborhood"></p>
+							
+						</div>
+
+						<div class="col-md-6">
+							<label><b>Pagamento com cartão? </b></label><p id="order-is_card"></p>
+							<div  id="order-troco"></div>
+						</div>
+					</div>
+					<hr/>
+					<h4>Produtos</h4>
+					<div class="row" id="order-products">
+					</div>
+					<hr/>
+					<div class="row container">
+						<h2><b>Total: </b> <h2 id="order-total"></h2></h2>
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
+				</div>
+			</div>
+
+	</div>
+</div>
 <div class="row">
 
+
+	
 	<div class="col-sm-6 col-md-3">
 		<div class="card card-stats card-danger card-round">
 			<div class="card-body">
 				<div class="row">
 					<div class="col-5">
 						<div class="icon-big text-center">
-							<i class="fa fa-users"></i>
+							<i class="fas fa-motorcycle"></i>
 						</div>
 					</div>
 					<div class="col col-stats">
 						<div class="numbers">
-							<p class="card-category">Usuários</p>
-							<h4 class="card-title">{{count(App\User::all())}}</h4>
+							<p class="card-category">PEDIDOS</p>
+							<h4 class="card-title">{{count(App\Order::all())}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	@php
+		$total = 0;
+		$media = 0;
+		$orders = App\Order::OrderBy('created_at','desc')->get();
+		foreach($orders as $order){
+			$total+= $order->total;
+		}
+		$media = $total / count($orders);
+	@endphp
+	<div class="col-sm-6 col-md-3">
+		<div class="card card-stats card-danger card-round">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-5">
+						<div class="icon-big text-center">
+							<b>R</b><i class="fas fa-dollar-sign"></i>
+						</div>
+					</div>
+					<div class="col col-stats">
+						<div class="numbers">
+							<p class="card-category">RECEITA</p>
+							<h4 class="card-title">{{number_format($total,2)}}</h4>
 						</div>
 					</div>
 				</div>
@@ -111,13 +184,13 @@
 				<div class="row">
 					<div class="col-5">
 						<div class="icon-big text-center">
-							<i class="fas fa-pizza-slice"></i>
+							<i class="fas fa-receipt"></i>
 						</div>
 					</div>
 					<div class="col col-stats">
 						<div class="numbers">
-							<p class="card-category">PIZZAS</p>
-							<h4 class="card-title">{{count(App\Product::where('category','PIZZA')->get())}}</h4>
+							<p class="card-category">TICKET MÉDIO</p>
+							<h4 class="card-title">R$ {{number_format($media,2)}}</h4>
 						</div>
 					</div>
 				</div>
@@ -125,26 +198,74 @@
 		</div>
 	</div>
 
-	<div class="col-sm-6 col-md-3">
-		<div class="card card-stats card-danger card-round">
-			<div class="card-body">
-				<div class="row">
-					<div class="col-5">
-						<div class="icon-big text-center">
-							<i class="fas fa-glass-whiskey"></i>
-						</div>
-					</div>
-					<div class="col col-stats">
-						<div class="numbers">
-							<p class="card-category">BEBIDAS</p>
-							<h4 class="card-title">{{count(App\Product::where('category','BEBEIDA')->get())}}</h4>
-						</div>
-					</div>
-				</div>
-			</div>
+</div>
+
+<h1>Pedidos</h1>
+	<div class="card">
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-hover" id="orders-list">
+					<thead>
+						<tr>
+							<th>Cliente</th>
+							<th data-orderable="false">Endereço</th>
+							<th data-orderable="false">Bairro</th>
+							<th data-orderable="false">Data</th>
+							<th>TOTAL</th>
+							<th data-orderable="false"></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($orders as $u)
+						@php
+						$class = '';
+
+						if ($u->locked) {
+						$class = 'text-muted';
+					}
+					@endphp
+
+					<tr class="{{ $class }}">
+						<td>{{ $u->client_name }}</td>
+						<td>{{ $u->client_address }}</td>
+						<td>{{ $u->freight->neighborhood }}</td>
+						<td>{{ date('d/m/Y H:m',strtotime($u->created_at))}}</td>
+						<td ><span class="badge badge-success">R$ {{ number_format($u->total,2) }}</span></td>
+						<td class="table-actions">  
+							<button data-toggle="modal" data-target="#show-order" class="btn btn-primary" onclick="showDetailsOrder({{ json_encode($u) }})"><i class="fas fa-info-circle"></i></button>
+						</td>
+						{{-- <td>
+							<div class="table-actions">
+								@can('edit', $u)
+								<a href="#" class="btn btn-default btn-sm" data-toggle="modal" onclick="setEditProductData({{json_encode($u)}})"  data-target="#edit-product" ><i class="fa fa-pencil-alt"></i> Editar</a>
+								@endcan
+
+								@if (!$u->locked)
+								@can('block', $u)
+								<a href="{{ route('products.block', ['product' => $u]) }}" class="btn btn-default btn-sm confirmable"><i class="fa fa-lock"></i> Bloquear</a>
+								@endcan
+								@else
+								@can('unblock', $u)
+								<a href="{{ route('products.unblock', ['product' => $u]) }}" class="btn btn-default btn-sm confirmable"><i class="fa fa-lock-open"></i> Desbloquear</a>
+								@endcan
+								@endif
+
+								@can('destroy', $u)
+								<form id="form-delete-product-{{$u->id}}" action="{{ route('products.destroy', ['product' => $u]) }}" method="POST">
+									<input type="hidden" name="_method" value="DELETE">
+									<input type="hidden" name="_token" value="{{csrf_token()}}">
+									<a href="#" onClick="document.getElementById('form-delete-product-{{$u->id}}').submit();" class="btn btn-default btn-sm"><i class="fa fa-trash-alt"></i> Excluir</a>
+								</form>
+								
+								@endcan
+							</div>
+						</td> --}}
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
 		</div>
 	</div>
-
 </div>
 
 <h1>Produtos</h1>
@@ -219,6 +340,7 @@
 @section('js')
 <script type="text/javascript">
 	$('#products-list').DataTable();	
+	$('#orders-list').DataTable();	
 
 	function setEditProductData(product)
 	{
@@ -233,6 +355,27 @@
 		$('#form-edit-product').attr('action','/admin/products/'+product.id);
 
 		///
+	}
+
+	function showDetailsOrder(order){
+		$('#order-id').html(order.id);
+		$('#order-client_name').html(order.client_name);
+		$('#order-client_address').html(order.client_address);
+		$('#order-created_at').html(order.created_at);
+		$('#order-total').html('R$ '+order.total.toFixed(2));
+		$('#order-is_card').html((order.is_card)?"Sim":"Não");
+		if(order.troco != 0){
+			$('#order-troco').html("<label><b>Troco: </b></label><p>R$ "+order.troco.toFixed(2)+"</p>");
+		}
+		$('#order-neighborhood').html(order.freight.neighborhood);
+
+		html_products = "";
+		for (let index = 0; index < order.products.length; index++) {
+			html_products += "<div class='col-md-6'><label><b>Item "+(parseInt(index)+1)+": </b></label><p>"+order.products[index].name+" | R$ "+order.products[index].value.toFixed(2)+"</p></div>";
+			
+		}
+		$('#order-products').html(html_products);
+
 	}
 </script>
 @endsection

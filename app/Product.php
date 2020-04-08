@@ -13,4 +13,8 @@ class Product extends Model
     {
     	return ['PIZZAS','BEBIDAS'];
     } 
+
+    public function orders(){
+        return $this->belongsToMany('App\Order');
+    }
 }

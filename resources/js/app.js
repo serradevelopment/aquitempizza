@@ -8,8 +8,10 @@
 
  window.Vue = require('vue');
  import Vuex from 'vuex';
-
+ Vue.use(require('vue-cookies'))
  Vue.use(Vuex);
+
+ Vue.$cookies.config('3m')
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

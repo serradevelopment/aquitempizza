@@ -12,18 +12,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'IndexController@index')->name('index');
-	Auth::routes();
 
-Route::namespace('Admin')->prefix('admin')->group(function(){
+Route::get('/', 'IndexController@index')->name('index');
+Auth::routes();
+Route::resource('/orders', 'OrdersController');
+
+Route::namespace('Admin')->prefix('admin')->group(function () {
 	\BeautifulSea\LaravelRamodnil\LaravelRamodnilServiceProvider::routes();
 	Route::get('/', 'HomeController@index')->name('home');
 
 	Route::get('/products/lock/{product}', 'ProductsController@lock')->name('products.block');
 	Route::get('/products/unlock/{product}', 'ProductsController@unlock')->name('products.unblock');
 
-	Route::get('/products/all', function(){
+	Route::get('/products/all', function () {
 		return App\Product::all()->toJson();
 	});
-	Route::resource('/products','ProductsController');
+	Route::resource('/products', 'ProductsController');
+	Route::resource('/freights', 'FreightsController');
 });
