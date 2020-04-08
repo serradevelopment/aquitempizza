@@ -156,7 +156,7 @@
 		foreach($orders as $order){
 			$total+= $order->total;
 		}
-		$media = $total / count($orders);
+		$media = (count($orders) > 0)?$total / count($orders):0;
 	@endphp
 	<div class="col-sm-6 col-md-3">
 		<div class="card card-stats card-danger card-round">
