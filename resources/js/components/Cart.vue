@@ -193,7 +193,7 @@ export default {
         if (this.is_card) {
           text += "\n" + card;
         }
-        text += "----------------------------------------------\n";
+        text += "\n----------------------------------------------\n";
         text += "Nome: "+this.user.name+"\n";
         text += "Endereço: "+this.user.address+"\n";
         text += "Bairro: "+this.user.neighborhood.neighborhood+"\n";
