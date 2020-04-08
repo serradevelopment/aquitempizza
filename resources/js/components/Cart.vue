@@ -202,8 +202,7 @@ export default {
 
         text = window.encodeURIComponent(text);
         var url =
-          "https://api.whatsapp.com/send?phone=5524998734138&text=" + text;
-          // "https://api.whatsapp.com/send?phone=5524998160954&text=" + text;
+          "https://api.whatsapp.com/send?phone=5524998160954&text=" + text;
         var win = window.open(url, "_blank");
         win.focus();
       }
