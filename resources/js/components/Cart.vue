@@ -189,6 +189,7 @@ export default {
           text += "*TOTAL: R$" + this.getTotalCartValue+"*";
           if (this.troco != 0) {
             text += " | Troco para: R$" + this.troco;
+            text += "\nTroco: R$" + (this.troco - this.getTotalCartValue).toFixed(2);
           }
           if (this.is_card) {
             text += "\n" + card;
