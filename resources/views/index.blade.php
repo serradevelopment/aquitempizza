@@ -43,6 +43,7 @@
     <link href="fonts/ionicons.css" rel="stylesheet">
     <link href="common/styles.css" rel="stylesheet">
     <link rel="manifest" href="http://aquitempizza.com/manifest.json">
+    <link rel="stylesheet" href="common/animate.css">
     @laravelPWA
     <style type="text/css">
 
@@ -61,6 +62,25 @@
         #style-3::-webkit-scrollbar-thumb
         {
             background-color: #000000;
+        }
+
+        .card-pcc{
+            background-color: #dc3545bf;
+            color: white;
+            border-radius: 8%;
+            padding: 10px;
+            margin: auto!important;
+            transition: transform 1s;
+        }
+        .card-pcc:hover{
+            box-shadow: 1px 1px 20px 0px black;
+            background-color:#dc3545;
+            transform: scale(1.1);
+        }
+        .card-pcc p{
+            color: white;
+            font-style: italic;
+            font-family: cursive;
         }
 
     </style>
@@ -105,7 +125,7 @@
                         <div class="dplay-tbl-cell center-text color-white">
 
                             <h5><b>O VERDADEIRO SABOR DA PIZZA</b></h5>
-                            <h1 class="mt-30 mb-15">Aqui tem Pizza</h1>
+                            <h1 class="mt-30 mb-15 animated zoomIn">Aqui tem Pizza</h1>
                         </div><!-- dplay-tbl-cell -->
                     </div><!-- dplay-tbl -->
                 </div><!-- container -->
@@ -123,7 +143,7 @@
 
                     <div class="row">
                         <div class="col-md-4" style="margin-top: 15px">
-                            <div class=" ftco-animate fadeInUp ftco-animated" style="background-color: #ff00003b; border-radius: 8%;padding: 10px;">
+                            <div class=" ftco-animate fadeInUp ftco-animated card-pcc">
                                 <div class="media d-block text-center block-6 services">
                                     <div class="icon d-flex justify-content-center align-items-center mb-5">
                                         <img src="images/receita.png" style="height: 70px; width: auto">
@@ -139,7 +159,7 @@
                         </div>
                         <div class="col-md-4" style="margin-top: 15px">
 
-                            <div class=" ftco-animate fadeInUp ftco-animated" style="background-color: #ff00003b; border-radius: 8%;padding: 10px;">
+                            <div class=" ftco-animate fadeInUp ftco-animated card-pcc">
                                 <div class="media d-block text-center block-6 services">
                                     <div class="icon d-flex justify-content-center align-items-center mb-5">
                                         <img src="images/entregador.png" style="height: 70px; width: auto">
@@ -153,7 +173,7 @@
                         </div>
                         <div class="col-md-4" style="margin-top: 15px">
 
-                            <div class=" ftco-animate fadeInUp ftco-animated" style="background-color: #ff00003b; border-radius: 8%;padding: 10px;">
+                            <div class=" ftco-animate fadeInUp ftco-animated card-pcc" >
                                 <div class="media d-block text-center block-6 services">
                                     <div class="icon d-flex justify-content-center align-items-center mb-5">
                                         <img src="images/pizza.png" style="height: 70px; width: auto">

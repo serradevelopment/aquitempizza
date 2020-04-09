@@ -216,6 +216,8 @@ export default {
             "https://web.whatsapp.com/send?phone=5524998160954&text=" + text;
           var win = window.open(url, "_blank");
           win.focus();
+        }).catch(error => {
+          console.log(error);
         });
     },
     sendOrder() {
