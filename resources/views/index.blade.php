@@ -104,7 +104,7 @@
                     <div class="dplay-tbl">
                         <div class="dplay-tbl-cell center-text color-white">
 
-                            <h5><b>A MELHOR DA CIDADE</b></h5>
+                            <h5><b>O VERDADEIRO SABOR DA PIZZA</b></h5>
                             <h1 class="mt-30 mb-15">Aqui tem Pizza</h1>
                         </div><!-- dplay-tbl-cell -->
                     </div><!-- dplay-tbl -->
@@ -213,30 +213,40 @@
                 <div class="container-fluid">
                     <a href="#"><img src="images/aquitempizza.png" style="height: 150px; width: auto" alt="Logo"></a>
 
-                    <div class="pt-30">
-                        <p class="underline-secondary"><b>Endereço:</b></p>
-                        <p>Rodovia RJ 145, nº 26364, Canteiro </p>
-                    </div>
+                    <div class="">
 
-                    <div class="pt-30">
-                        <p class="underline-secondary mb-10"><b>Telefone:</b></p>
-                        <a href="tel:+55 24 998160954 ">24 99816-0954 </a>
-                    </div>
-
-                    <div class="pt-30">
-                        <p class="underline-secondary mb-10"><b>Email:</b></p>
-                        <a href="mailto:aquitempizzas@gmail.com"> aquitempizzas@gmail.com</a>
-                    </div>
-
-                    <ul class="icon mt-30">
-                        <li><a href="https://www.facebook.com/aquitempizza" target="_blank"><i class="ion-social-facebook"></i></a></li>
-                    </ul>
-
-                    <p class="color-light font-9 mt-50 mt-sm-30">
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                        Todos direitos reservados | Este site foi desenvolvido por  
-                        <a href="https://www.serradev.com.br" target="_blank">Serra Development</a> 
-                    </p>
+                        <div class="row">
+                            <div class="pt-30 col-md-4">
+                                <p class="underline-secondary"><b>Endereço:</b></p>
+                                <p>Rodovia RJ 145, nº 26415, Canteiro </p>
+                            </div>
+        
+                            <div class="pt-30 col-md-4">
+                                <p class="underline-secondary mb-10"><b>Telefone:</b></p>
+                                <a href="tel:+55 24 998160954 ">(24) 99816-0954 </a> | 
+                                <a href="tel:+55 24 24535000 ">(24) 2453-5000 </a>
+                            </div>
+        
+                            <div class="pt-30 col-md-4">
+                                <p class="underline-secondary mb-10"><b>Email:</b></p>
+                                <a href="mailto:aquitempizzas@gmail.com"> aquitempizzas@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <ul class="icon mt-30" style="margin:auto">
+                                <li><a href="https://www.facebook.com/aquitempizza" target="_blank"><i class="ion-social-facebook"></i></a></li>
+                            </ul>
+                        </div>
+                   
+                        <div class="row">
+                            <p class="color-light font-9 mt-50 mt-sm-30 mb-10" style="margin:auto"> 
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                                Todos direitos reservados | Este site foi desenvolvido por  
+                                <a href="https://www.serradev.com.br" target="_blank">Serra Development</a> 
+                            </p>
+                        </div>
+                    
                 </div><!-- container -->
             </footer>
         </div>

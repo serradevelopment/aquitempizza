@@ -3,11 +3,11 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import Vuex from 'vuex';
 
  require('./bootstrap');
-
  window.Vue = require('vue');
- import Vuex from 'vuex';
+ window.moment = require('moment');
  Vue.use(require('vue-cookies'))
  Vue.use(Vuex);
 

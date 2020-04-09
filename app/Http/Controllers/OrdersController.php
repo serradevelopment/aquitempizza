@@ -50,7 +50,7 @@ class OrdersController extends Controller
         $order->fill($data);
         $order->save();
         $order->products()->saveMany($products);
-        return response($order->with('products','freight')->get());
+        return response($order);
     }
 
     /**

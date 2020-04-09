@@ -50,7 +50,10 @@
               <select required v-model="user.neighborhood" class="form-control select-2">
                 <option :value="f" v-for="f in freights" :key="f.id">{{f.neighborhood}}</option>
               </select>
-              <p v-if="user.neighborhood.value == null" style="color:red">No momento não fazemos entrega para este bairro.</p>
+              <p
+                v-if="user.neighborhood.value == null"
+                style="color:red"
+              >No momento não fazemos entrega para este bairro.</p>
             </div>
           </div>
           <hr />
@@ -86,7 +89,10 @@
         </div>
 
         <div class="container row">
-          <span style="color: black;padding: 10px;float: right;" v-if="user.neighborhood.value != null">Frete: R$ {{user.neighborhood.value.toFixed(2)}}</span>
+          <span
+            style="color: black;padding: 10px;float: right;"
+            v-if="user.neighborhood.value != null"
+          >Frete: R$ {{user.neighborhood.value.toFixed(2)}}</span>
         </div>
 
         <li>
@@ -94,7 +100,12 @@
         </li>
 
         <li>
-          <button type="submit" class="btn btn-success" @click="sendOrder()" v-if="user.neighborhood.value != null">Enviar Pedido</button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            @click="sendOrder()"
+            v-if="user.neighborhood.value != null"
+          >Enviar Pedido</button>
         </li>
       </div>
     </ul>
@@ -118,13 +129,12 @@ export default {
         name: null,
         address: null,
         neighborhood: {
-          value:null
+          value: null
         }
       }
     };
   },
   computed: {
-    
     productsInCart() {
       return this.$store.state.cart.products;
     },
@@ -133,13 +143,13 @@ export default {
       for (var i = this.productsInCart.length - 1; i >= 0; i--) {
         total += this.productsInCart[i].value;
       }
-      total += this.user.neighborhood.value
+      total += this.user.neighborhood.value;
       return total.toFixed(2);
     }
   },
   methods: {
-    is_selected(f){
-      return (this.user.neighborhood == f.id)?true:false;
+    is_selected(f) {
+      return this.user.neighborhood == f.id ? true : false;
     },
     removeFromCart(s) {
       var index = this.$store.state.cart.products.indexOf(s);
@@ -161,54 +171,66 @@ export default {
           total: parseFloat(this.getTotalCartValue)
         })
         .then(response => {
+          var pizzas = "Pizzas:\n";
+          var bebidas = "\nBebidas:\n";
+          var card = "Pagamento com cartão";
+          var text = "";
+          
+          
+          
+          text += "*--------------AQUI TEM PIZZA-----------*\n";
+          text += "             _"+moment().format('L')+" às "+moment().format('LTS')+"_           \n";
+          text += "PEDIDO: #"+response.data.id+"\n";
+          text += "CLIENTE: " + this.user.name + "\n";
+          text += "ENDEREÇO: " + this.user.address + "\n";
+          text += "BAIRRO: " + this.user.neighborhood.neighborhood + "\n";
+          text += "*----------------PAGAMENTO--------------*\n";
+          text += "FRETE: R$ " + this.user.neighborhood.value.toFixed(2) + "\n";
+          text += "*TOTAL: R$" + this.getTotalCartValue+"*";
+          if (this.troco != 0) {
+            text += " | Troco para: R$" + this.troco;
+          }
+          if (this.is_card) {
+            text += "\n" + card;
+          }
+          text += "\n*------------------PEDIDO-----------------*\n";
+          
+
+          for (var i = 0; i < this.productsInCart.length; i++) {
+            if (this.productsInCart[i].category == "PIZZAS") {
+              pizzas += "*1 x " + this.productsInCart[i].name + " = R$"+this.productsInCart[i].value.toFixed(2)+"*\n";
+            }
+            if (this.productsInCart[i].category == "BEBIDAS") {
+              bebidas += "*1 x " + this.productsInCart[i].name + " = R$"+this.productsInCart[i].value.toFixed(2)+"*\n";
+            }
+          }
+
+          text += pizzas;
+          text += bebidas;
+          text += "*----------------------------------------------*\n";
+          
+
+          text = window.encodeURIComponent(text);
+          var url =
+            "https://web.whatsapp.com/send?phone=5524998160954&text=" + text;
+          var win = window.open(url, "_blank");
+          win.focus();
         });
     },
     sendOrder() {
-      if (this.user.name && this.user.address && this.user.neighborhood.value != null) {
-        
+      if (
+        this.user.name &&
+        this.user.address &&
+        this.user.neighborhood.value != null
+      ) {
         this.$cookies.set("user", this.user);
         this.storeOrder();
-        var text = "----------------NOVO PEDIDO-------------\n";
-
-        var pizzas = "Pizzas:\n";
-        var bebidas = "\nBebidas:\n";
-        var card = "Pagamento com cartão";
-
-        for (var i = 0; i < this.productsInCart.length; i++) {
-          if (this.productsInCart[i].category == "PIZZAS") {
-            pizzas += "1 x " + this.productsInCart[i].name + "\n";
-          }
-          if (this.productsInCart[i].category == "BEBIDAS") {
-            bebidas += "1 x " + this.productsInCart[i].name + "\n";
-          }
-        }
-
-        text += pizzas;
-        text += bebidas;
-        text += "----------------------------------------------\n";
-        text += "TOTAL: R$" + this.getTotalCartValue;
-        if (this.troco != 0) {
-          text += " | Troco para: R$" + this.troco;
-        }
-        if (this.is_card) {
-          text += "\n" + card;
-        }
-        text += "\n----------------------------------------------\n";
-        text += "Nome: "+this.user.name+"\n";
-        text += "Endereço: "+this.user.address+"\n";
-        text += "Bairro: "+this.user.neighborhood.neighborhood+"\n";
-        text += "Frete: R$ "+this.user.neighborhood.value.toFixed(2)+"\n";
-        text += "----------------------------------------------\n";
-
-        text = window.encodeURIComponent(text);
-        var url =
-          "https://api.whatsapp.com/send?phone=5524998160954&text=" + text;
-        var win = window.open(url, "_blank");
-        win.focus();
       }
     }
   },
   mounted() {
+    moment.locale('pt-br')
+   
     var user = this.$cookies.get("user");
     if (user != null) {
       this.user.name = this.$cookies.get("user").name;
