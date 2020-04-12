@@ -71,16 +71,15 @@
             padding: 10px;
             margin: auto!important;
             transition: transform 1s;
+            font-weight: bold;
         }
         .card-pcc:hover{
             box-shadow: 1px 1px 20px 0px black;
             background-color:#dc3545;
-            transform: scale(1.1);
+            transform: scale(1.03);
         }
         .card-pcc p{
             color: white;
-            font-style: italic;
-            font-family: cursive;
         }
 
     </style>
