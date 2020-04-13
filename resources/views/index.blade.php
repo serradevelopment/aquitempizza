@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="copyright" content="Serra development" />
+    <meta name="copyright" content="Aqui Tem Pizza" />
     <title>Aquitempizza - Pizzaria em Valença RJ</title>  
     
     <meta name="keywords" content="Aqui tem pizza, pizzaria valença rj, delivery de pizza, pizzaria valença, pizzaria valenca rj, aquitempizza" />
@@ -20,7 +20,7 @@
 
     
     <!-- Open Graph meta -->
-    <meta property="og:title" content="Serra Development"/>
+    <meta property="og:title" content="Aqui Tem Pizza"/>
     <meta property="og:type" content="website" />
     <meta property="og:image" content="http://www.aquitempizza.com.br/images/aquitempizza.png"/>
     <meta property="og:description" content="O melhor delivery de pizza é aqui! Venha conhecer e faça já o seu pedido! Aqui Tem Pizza Delivery."/>
