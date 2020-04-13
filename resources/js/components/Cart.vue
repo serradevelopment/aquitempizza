@@ -247,6 +247,11 @@ export default {
 };
 </script>
 <style type="text/css">
+.btn-primaryc:hover{
+  color: black!important;
+  background: #e4ff04!important;
+}
+
 .on-add {
   -webkit-transition: max-height 0.8s;
   -moz-transition: max-height 0.8s;
