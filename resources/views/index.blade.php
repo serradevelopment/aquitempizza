@@ -16,14 +16,14 @@
     <meta name="url" content="https://www.aquitempizza.com">
     <meta name="language" content="pt_br">
     <meta name="Classification" content="WebSites">
-    <meta name="image" content="https://www.aquitempizza.com/images/aquitempizza.png"/>
+    <meta name="image" content="https://www.aquitempizza.com/images/pizza1.jpg"/>
 
     
     <!-- Open Graph meta -->
     <meta property="og:title" content="Aqui Tem Pizza"/>
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://www.aquitempizza.com/images/aquitempizza.png"/>
-    <meta property="og:description" content="O melhor delivery de pizza é aqui! Venha conhecer e faça já o seu pedido! Aqui Tem Pizza Delivery."/>
+    <meta property="og:description" content="O verdadeiro delivery de pizza é aqui! Venha conhecer e faça já o seu pedido! Aqui Tem Pizza Delivery - Valença RJ"/>
     <meta property="og:email" content="contato@serradev.com.br"/>
     <meta property="og:phone_number" content="(24)99873-4138"/>
     <meta property="og:site_name" content="Aqui tem pizza" />
