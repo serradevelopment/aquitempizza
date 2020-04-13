@@ -16,7 +16,7 @@
     <meta name="url" content="https://www.aquitempizza.com">
     <meta name="language" content="pt_br">
     <meta name="Classification" content="WebSites">
-    <meta name="image" content="https://www.aquitempizza.com/images/pizza1.jpg"/>
+    <meta name="image" content="https://www.aquitempizza.com/images/aquitempizza.png"/>
 
     
     <!-- Open Graph meta -->
