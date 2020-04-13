@@ -6,13 +6,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="copyright" content="Aqui Tem Pizza" />
-    <title>Aqui Tem Pizza</title>  
+    <meta name="copyright" content="Serra development" />
+    <title>Aquitempizza - Pizzaria em Valença RJ</title>  
     
-    <meta name="keywords" content="Aqui tem pizza, pizzaria, delivery de pizza, pizzaria valença, pizzaria valenca rj, aquitempizza" />
-    <meta name="description" content="O melhor delivery de pizza é aqui! Venha conhecer e faça já o seu pedido! Aqui Tem Pizza Delivery.">
+    <meta name="keywords" content="Aqui tem pizza, pizzaria valença rj, delivery de pizza, pizzaria valença, pizzaria valenca rj, aquitempizza" />
+    <meta name="description" content="O verdadeiro delivery de pizza é aqui! Venha conhecer e faça já o seu pedido! Aqui Tem Pizza Delivery em Valença - RJ.">
     <meta name="author" content="contato@serradev.com.br">
-    <meta name="subject" content="Realize seu pedido pelo nosso site. Aqui tem pizza, o melhor delivery de pizza da cidade!">
+    <meta name="subject" content="Realize seu pedido pelo nosso site. Aqui tem pizza, o verdadeiro delivery de pizza da cidade de Valença!">
     <meta name="url" content="http://www.aquitempizza.com">
     <meta name="language" content="pt_br">
     <meta name="Classification" content="WebSites">
@@ -165,7 +165,7 @@
                                     </div>
                                     <div class="media-body">
                                         <h3 class="heading">A entrega</h3>
-                                        <p>Nós sabemos da sua fome! Pensamos no melhor para nossos clientes, e além do atendimento especial, tivemos o cuidado de contratar os melhores entregadores para que a pizza chegue em sua residência quentinha e saborosa, do jeito que você espera!</p>
+                                        <p>Nós sabemos da sua fome! Pensamos no melhor para nossos clientes de Valença, e além do atendimento especial, tivemos o cuidado de contratar os melhores entregadores para que a pizza chegue em sua residência quentinha e saborosa, do jeito que você espera!</p>
                                     </div>
                                 </div>
                             </div>
@@ -237,7 +237,7 @@
                         <div class="row">
                             <div class="pt-30 col-md-4">
                                 <p class="underline-secondary"><b>Endereço:</b></p>
-                                <p>Rodovia RJ 145, nº 26415, Canteiro </p>
+                                <p>Rodovia RJ 145, nº 26415, Canteiro - Valença RJ </p>
                             </div>
         
                             <div class="pt-30 col-md-4">
