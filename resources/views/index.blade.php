@@ -13,23 +13,23 @@
     <meta name="description" content="O verdadeiro delivery de pizza é aqui! Venha conhecer e faça já o seu pedido! Aqui Tem Pizza Delivery em Valença - RJ.">
     <meta name="author" content="contato@serradev.com.br">
     <meta name="subject" content="Realize seu pedido pelo nosso site. Aqui tem pizza, o verdadeiro delivery de pizza da cidade de Valença!">
-    <meta name="url" content="http://www.aquitempizza.com">
+    <meta name="url" content="https://www.aquitempizza.com">
     <meta name="language" content="pt_br">
     <meta name="Classification" content="WebSites">
-    <meta name="image" content="http://www.aquitempizza.com.br/images/aquitempizza.png"/>
+    <meta name="image" content="https://www.aquitempizza.com/images/aquitempizza.png"/>
 
     
     <!-- Open Graph meta -->
     <meta property="og:title" content="Aqui Tem Pizza"/>
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="http://www.aquitempizza.com.br/images/aquitempizza.png"/>
+    <meta property="og:image" content="https://www.aquitempizza.com/images/aquitempizza.png"/>
     <meta property="og:description" content="O melhor delivery de pizza é aqui! Venha conhecer e faça já o seu pedido! Aqui Tem Pizza Delivery."/>
     <meta property="og:email" content="contato@serradev.com.br"/>
     <meta property="og:phone_number" content="(24)99873-4138"/>
     <meta property="og:site_name" content="Aqui tem pizza" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="http://www.agenciadedigitadores.online/images/aquitempizza.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="https://aquitempizza.com/images/aquitempizza.png" type="image/x-icon" />
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
@@ -42,7 +42,7 @@
     <link href="plugin-frameworks/swiper.css" rel="stylesheet">
     <link href="fonts/ionicons.css" rel="stylesheet">
     <link href="common/styles.css" rel="stylesheet">
-    <link rel="manifest" href="http://aquitempizza.com/manifest.json">
+    <link rel="manifest" href="https://aquitempizza.com/manifest.json">
     <link rel="stylesheet" href="common/animate.css">
     @laravelPWA
     <style type="text/css">
