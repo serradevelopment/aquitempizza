@@ -80,7 +80,7 @@
 
         <div class="container row" v-if="is_card == false">
           <div class="col-6">
-            <span style>Troco:</span>
+            <span style>Troco para:</span>
           </div>
           <div class="col-6">
             <input type="number" v-model="troco" class="form-control money-mask" />
