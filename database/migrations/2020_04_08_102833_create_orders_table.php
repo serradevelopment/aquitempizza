@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->double('total')->nullable();
             $table->timestamps();
 
-            $table->foreignId('freight_id')->constrained();
+            $table->foreignId('freight_id')->constrained()->onDelete('cascade');
 
         });
     }

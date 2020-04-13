@@ -125,7 +125,9 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
-        unlink(public_path('/files/products/'.$product->id.'.'.$product->img_extension));
+        if(is_file(public_path('/files/products/'.$product->id.'.'.$product->img_extension))){
+            unlink(public_path('/files/products/'.$product->id.'.'.$product->img_extension));
+        }
         $product->delete();
         
         return redirect()->route('home')->with('flash.success', 'Produto deletado com sucesso');

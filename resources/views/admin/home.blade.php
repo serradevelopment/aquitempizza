@@ -24,15 +24,15 @@
 				</div>
 				<div class="modal-body">
 					<input type="hidden" name="_token" value="{{csrf_token()}}">
-					{{ Form::bsText('name', 'Nome') }}
+					{{ Form::bsText('name', 'Nome',['required'=>true]) }}
 					{{ Form::bsText('description', 'Descrição') }}
-					{{ Form::bsText('value', 'Preço',['class'=>'money-mask']) }}
-					{{ Form::bsFile('image', 'Foto') }}
-					{{ Form::bsSelect('category', 'Categoria', App\Product::categories(),['placeholder' => 'Selecione uma opção','class'=>'select-2']) }}
+					{{ Form::bsText('value', 'Preço',['class'=>'money-mask','required'=>true]) }}
+					{{ Form::bsFile('image', 'Foto',['required'=>true]) }}
+					{{ Form::bsSelect('category', 'Categoria', App\Product::categories(),['placeholder' => 'Selecione uma opção','class'=>'select-2','required'=>true]) }}
 
 					{{ Form::bsSelect('tag', 'Adicione uma etiqueta', ['PROMOÇÃO'=>'PROMOÇÃO','ESPECIAL'=>'ESPECIAL','FRETE GRÁTIS'=>'FRETE GRÁTIS'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-create','class'=>'select-2']) }}
 
-					{{ Form::bsSelect('is_top', 'Mais vendido?', ['NÃO','SIM'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-create']) }}
+					{{ Form::bsSelect('is_top', 'Mais vendido?', ['NÃO','SIM'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-create','required'=>true]) }}
 
 				</div>
 				<div class="modal-footer">
@@ -61,17 +61,17 @@
 					<input type="hidden" name="_token" value="{{csrf_token()}}">
 					<input type="hidden" name="_method" value="PUT">
 					<input type="hidden" name="id-product-edit">
-					{{ Form::bsText('name', 'Nome',['id'=>'name-product-edit']) }}
+					{{ Form::bsText('name', 'Nome',['id'=>'name-product-edit','required'=>true]) }}
 					{{ Form::bsText('description', 'Descrição',['id'=>'description-product-edit']) }}
-					{{ Form::bsText('value', 'Preço',['class'=>'money-mask','id'=>'value-product-edit']) }}
+					{{ Form::bsText('value', 'Preço',['class'=>'money-mask','id'=>'value-product-edit','required'=>true]) }}
 					<img id="img-product-edit" style="height: 120px; width: auto">
 					{{ Form::bsFile('image', 'Foto') }}
 
-					{{ Form::bsSelect('category', 'Categoria', App\Product::categories(),['placeholder' => 'Selecione uma opção','id'=>'category-product-edit','class'=>'select-2']) }}
+					{{ Form::bsSelect('category', 'Categoria', App\Product::categories(),['placeholder' => 'Selecione uma opção','id'=>'category-product-edit','class'=>'select-2','required'=>true]) }}
 
 					{{ Form::bsSelect('tag', 'Adicione uma etiqueta', ['PROMOÇÃO'=>'PROMOÇÃO','ESPECIAL'=>'ESPECIAL','FRETE GRÁTIS'=>'FRETE GRÁTIS'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-edit','class'=>'select-2']) }}
 
-					{{ Form::bsSelect('is_top', 'Mais vendido?', ['NÃO','SIM'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-edit']) }}
+					{{ Form::bsSelect('is_top', 'Mais vendido?', ['NÃO','SIM'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-edit','required'=>true]) }}
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
