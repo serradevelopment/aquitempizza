@@ -11,9 +11,10 @@
 @section('content')
 
 <!-- Modal CADASTRAR PRODUTO -->
-<div class="modal fade" id="create-product" tabindex="-1" role="dialog" aria-labelledby="create-product" aria-hidden="true">
+<div class="modal fade" id="create-product" tabindex="-1" role="dialog" aria-labelledby="create-product"
+	aria-hidden="true">
 	<div class="modal-dialog" role="document">
-		<form action="{{route('products.store')}}" method="POST"  enctype="multipart/form-data">
+		<form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
 
 			<div class="modal-content">
 				<div class="modal-header">
@@ -28,6 +29,7 @@
 					{{ Form::bsText('description', 'Descrição') }}
 					{{ Form::bsText('value', 'Preço',['class'=>'money-mask','required'=>true]) }}
 					{{ Form::bsFile('image', 'Foto',['required'=>true]) }}
+					<small>Formatos de imagem suportados: jpeg|png|jpg|gif|svg</small>
 					{{ Form::bsSelect('category', 'Categoria', App\Product::categories(),['placeholder' => 'Selecione uma opção','class'=>'select-2','required'=>true]) }}
 
 					{{ Form::bsSelect('tag', 'Adicione uma etiqueta', ['PROMOÇÃO'=>'PROMOÇÃO','ESPECIAL'=>'ESPECIAL','FRETE GRÁTIS'=>'FRETE GRÁTIS'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-create','class'=>'select-2']) }}
@@ -48,7 +50,7 @@
 <!-- Modal EDITAR PRODUTO-->
 <div class="modal fade" id="edit-product" tabindex="-1" role="dialog" aria-labelledby="edit-product" aria-hidden="true">
 	<div class="modal-dialog" role="document">
-		<form action="" method="POST" id="form-edit-product"  enctype="multipart/form-data">
+		<form action="" method="POST" id="form-edit-product" enctype="multipart/form-data">
 
 			<div class="modal-content">
 				<div class="modal-header">
@@ -66,6 +68,7 @@
 					{{ Form::bsText('value', 'Preço',['class'=>'money-mask','id'=>'value-product-edit','required'=>true]) }}
 					<img id="img-product-edit" style="height: 120px; width: auto">
 					{{ Form::bsFile('image', 'Foto') }}
+					<small>Formatos de imagem suportados: jpeg|png|jpg|gif|svg</small>
 
 					{{ Form::bsSelect('category', 'Categoria', App\Product::categories(),['placeholder' => 'Selecione uma opção','id'=>'category-product-edit','class'=>'select-2','required'=>true]) }}
 
@@ -86,49 +89,53 @@
 <!-- Modal VISUALIZAR DETALHES DO PEDIDO-->
 <div class="modal fade" id="show-order" tabindex="-1" role="dialog" aria-labelledby="show-order" aria-hidden="true">
 	<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">PEDIDO #<span id="order-id"></span></h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-6">
-							<h4>Cliente</h4>
-							<label><b>Nome: </b></label><p id="order-client_name"></p>
-							<label><b>Endereço: </b></label><p id="order-client_address"></p>
-							<label><b>Bairro: </b></label><p id="order-neighborhood"></p>
-							
-						</div>
-
-						<div class="col-md-6">
-							<label><b>Pagamento com cartão? </b></label><p id="order-is_card"></p>
-							<div  id="order-troco"></div>
-						</div>
-					</div>
-					<hr/>
-					<h4>Produtos</h4>
-					<div class="row" id="order-products">
-					</div>
-					<hr/>
-					<div class="row container">
-						<h2><b>Total: </b> <h2 id="order-total"></h2></h2>
-					</div>
-					
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
-				</div>
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">PEDIDO #<span id="order-id"></span></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-6">
+						<h4>Cliente</h4>
+						<label><b>Nome: </b></label>
+						<p id="order-client_name"></p>
+						<label><b>Endereço: </b></label>
+						<p id="order-client_address"></p>
+						<label><b>Bairro: </b></label>
+						<p id="order-neighborhood"></p>
+
+					</div>
+
+					<div class="col-md-6">
+						<label><b>Pagamento com cartão? </b></label>
+						<p id="order-is_card"></p>
+						<div id="order-troco"></div>
+					</div>
+				</div>
+				<hr />
+				<h4>Produtos</h4>
+				<div class="row" id="order-products">
+				</div>
+				<hr />
+				<div class="row container">
+					<h2><b>Total: </b>
+						<h2 id="order-total"></h2>
+					</h2>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Sair</button>
+			</div>
+		</div>
 
 	</div>
 </div>
 <div class="row">
 
-
-	
 	<div class="col-sm-6 col-md-3">
 		<div class="card card-stats card-danger card-round">
 			<div class="card-body">
@@ -150,13 +157,13 @@
 	</div>
 
 	@php
-		$total = 0;
-		$media = 0;
-		$orders = App\Order::OrderBy('created_at','desc')->get();
-		foreach($orders as $order){
-			$total+= $order->total;
-		}
-		$media = (count($orders) > 0)?$total / count($orders):0;
+	$total = 0;
+	$media = 0;
+	$orders = App\Order::OrderBy('created_at','desc')->get();
+	foreach($orders as $order){
+	$total+= $order->total;
+	}
+	$media = (count($orders) > 0)?$total / count($orders):0;
 	@endphp
 	<div class="col-sm-6 col-md-3">
 		<div class="card card-stats card-danger card-round">
@@ -201,27 +208,27 @@
 </div>
 
 <h1>Pedidos</h1>
-	<div class="card">
-		<div class="card-body">
-			<div class="table-responsive">
-				<table class="table table-hover" id="orders-list">
-					<thead>
-						<tr>
-							<th>Cliente</th>
-							<th data-orderable="false">Endereço</th>
-							<th data-orderable="false">Bairro</th>
-							<th data-orderable="false">Data</th>
-							<th>TOTAL</th>
-							<th data-orderable="false"></th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($orders as $u)
-						@php
-						$class = '';
+<div class="card">
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-hover" id="orders-list">
+				<thead>
+					<tr>
+						<th>Cliente</th>
+						<th data-orderable="false">Endereço</th>
+						<th data-orderable="false">Bairro</th>
+						<th data-orderable="false">Data</th>
+						<th>TOTAL</th>
+						<th data-orderable="false"></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($orders as $u)
+					@php
+					$class = '';
 
-						if ($u->locked) {
-						$class = 'text-muted';
+					if ($u->locked) {
+					$class = 'text-muted';
 					}
 					@endphp
 
@@ -230,101 +237,121 @@
 						<td>{{ $u->client_address }}</td>
 						<td>{{ $u->freight->neighborhood }}</td>
 						<td>{{ date('d/m/Y H:m',strtotime($u->created_at))}}</td>
-						<td ><span class="badge badge-success">R$ {{ number_format($u->total,2) }}</span></td>
-						<td class="table-actions">  
-							<button data-toggle="modal" data-target="#show-order" class="btn btn-primary" onclick="showDetailsOrder({{ json_encode($u) }})"><i class="fas fa-info-circle"></i></button>
+						<td><span class="badge badge-success">R$ {{ number_format($u->total,2) }}</span></td>
+						<td class="table-actions">
+							<button data-toggle="modal" data-target="#show-order" class="btn btn-primary"
+								onclick="showDetailsOrder({{ json_encode($u) }})"><i
+									class="fas fa-info-circle"></i></button>
 						</td>
 						{{-- <td>
 							<div class="table-actions">
 								@can('edit', $u)
-								<a href="#" class="btn btn-default btn-sm" data-toggle="modal" onclick="setEditProductData({{json_encode($u)}})"  data-target="#edit-product" ><i class="fa fa-pencil-alt"></i> Editar</a>
-								@endcan
+								<a href="#" class="btn btn-default btn-sm" data-toggle="modal" onclick="setEditProductData({{json_encode($u)}})"
+						data-target="#edit-product" ><i class="fa fa-pencil-alt"></i> Editar</a>
+						@endcan
 
-								@if (!$u->locked)
-								@can('block', $u)
-								<a href="{{ route('products.block', ['product' => $u]) }}" class="btn btn-default btn-sm confirmable"><i class="fa fa-lock"></i> Bloquear</a>
-								@endcan
-								@else
-								@can('unblock', $u)
-								<a href="{{ route('products.unblock', ['product' => $u]) }}" class="btn btn-default btn-sm confirmable"><i class="fa fa-lock-open"></i> Desbloquear</a>
-								@endcan
-								@endif
+						@if (!$u->locked)
+						@can('block', $u)
+						<a href="{{ route('products.block', ['product' => $u]) }}"
+							class="btn btn-default btn-sm confirmable"><i class="fa fa-lock"></i> Bloquear</a>
+						@endcan
+						@else
+						@can('unblock', $u)
+						<a href="{{ route('products.unblock', ['product' => $u]) }}"
+							class="btn btn-default btn-sm confirmable"><i class="fa fa-lock-open"></i> Desbloquear</a>
+						@endcan
+						@endif
 
-								@can('destroy', $u)
-								<form id="form-delete-product-{{$u->id}}" action="{{ route('products.destroy', ['product' => $u]) }}" method="POST">
-									<input type="hidden" name="_method" value="DELETE">
-									<input type="hidden" name="_token" value="{{csrf_token()}}">
-									<a href="#" onClick="document.getElementById('form-delete-product-{{$u->id}}').submit();" class="btn btn-default btn-sm"><i class="fa fa-trash-alt"></i> Excluir</a>
-								</form>
-								
-								@endcan
-							</div>
-						</td> --}}
-					</tr>
-					@endforeach
-				</tbody>
-			</table>
+						@can('destroy', $u)
+						<form id="form-delete-product-{{$u->id}}"
+							action="{{ route('products.destroy', ['product' => $u]) }}" method="POST">
+							<input type="hidden" name="_method" value="DELETE">
+							<input type="hidden" name="_token" value="{{csrf_token()}}">
+							<a href="#" onClick="document.getElementById('form-delete-product-{{$u->id}}').submit();"
+								class="btn btn-default btn-sm"><i class="fa fa-trash-alt"></i> Excluir</a>
+						</form>
+
+						@endcan
 		</div>
+		</td> --}}
+		</tr>
+		@endforeach
+		</tbody>
+		</table>
 	</div>
 </div>
+</div>
 
+@error('image')
+<div class="alert alert-danger">{{ $message }}</div>
+@enderror
 <h1>Produtos</h1>
 <div class="my-2">
 	@can('create', \App\User::class)
-	<button data-toggle="modal" data-target="#create-product" class="btn btn-primary"><i class="fa fa-plus"></i> Novo Produto</button>
+	<button data-toggle="modal" data-target="#create-product" class="btn btn-primary"><i class="fa fa-plus"></i> Novo
+		Produto</button>
 	@endcan
 </div>
-	<div class="card">
-		<div class="card-body">
-			<div class="table-responsive">
-				<table class="table table-hover" id="products-list">
-					<thead>
-						<tr>
-							<th data-orderable="false"></th>
-							<th>Nome</th>
-							<th>Descrição</th>
-							<th>Preço</th>
-							<th data-orderable="false"></th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($products as $u)
-						@php
-						$class = '';
+<div class="card">
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-hover" id="products-list">
+				<thead>
+					<tr>
+						<th data-orderable="false"></th>
+						<th>Nome</th>
+						<th>Descrição</th>
+						<th>Preço</th>
+						<th data-orderable="false"></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($products as $u)
+					@php
+					$class = '';
 
-						if ($u->locked) {
-						$class = 'text-muted';
+					if ($u->locked) {
+					$class = 'text-muted';
 					}
 					@endphp
 
 					<tr class="{{ $class }}">
-						<td><img src="/files/products/{{$u->id}}.{{$u->img_extension}}" style="height: 120px; width: auto"> </td>
+						<td><img src="/files/products/{{$u->id}}.{{$u->img_extension}}"
+								style="height: 120px; width: auto"> </td>
 						<td>{{ $u->name }}</td>
 						<td>{{ $u->description }}</td>
 						<td>R$ {{ number_format($u->value,2) }}</td>
 						<td>
 							<div class="table-actions">
 								@can('edit', $u)
-								<a href="#" class="btn btn-default btn-sm" data-toggle="modal" onclick="setEditProductData({{json_encode($u)}})"  data-target="#edit-product" ><i class="fa fa-pencil-alt"></i> Editar</a>
+								<a href="#" class="btn btn-default btn-sm" data-toggle="modal"
+									onclick="setEditProductData({{json_encode($u)}})" data-target="#edit-product"><i
+										class="fa fa-pencil-alt"></i> Editar</a>
 								@endcan
 
 								@if (!$u->locked)
 								@can('block', $u)
-								<a href="{{ route('products.block', ['product' => $u]) }}" class="btn btn-default btn-sm confirmable"><i class="fa fa-lock"></i> Bloquear</a>
+								<a href="{{ route('products.block', ['product' => $u]) }}"
+									class="btn btn-default btn-sm confirmable"><i class="fa fa-lock"></i> Bloquear</a>
 								@endcan
 								@else
 								@can('unblock', $u)
-								<a href="{{ route('products.unblock', ['product' => $u]) }}" class="btn btn-default btn-sm confirmable"><i class="fa fa-lock-open"></i> Desbloquear</a>
+								<a href="{{ route('products.unblock', ['product' => $u]) }}"
+									class="btn btn-default btn-sm confirmable"><i class="fa fa-lock-open"></i>
+									Desbloquear</a>
 								@endcan
 								@endif
 
 								@can('destroy', $u)
-								<form id="form-delete-product-{{$u->id}}" action="{{ route('products.destroy', ['product' => $u]) }}" method="POST">
+								<form id="form-delete-product-{{$u->id}}"
+									action="{{ route('products.destroy', ['product' => $u]) }}" method="POST">
 									<input type="hidden" name="_method" value="DELETE">
 									<input type="hidden" name="_token" value="{{csrf_token()}}">
-									<a href="#" onClick="document.getElementById('form-delete-product-{{$u->id}}').submit();" class="btn btn-default btn-sm"><i class="fa fa-trash-alt"></i> Excluir</a>
+									<a href="#"
+										onClick="document.getElementById('form-delete-product-{{$u->id}}').submit();"
+										class="btn btn-default btn-sm"><i class="fa fa-trash-alt"></i> Excluir</a>
 								</form>
-								
+
 								@endcan
 							</div>
 						</td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
+use Image;
 
 class ProductsController extends Controller
 {
@@ -41,6 +42,11 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'image' => 'image|required|mimes:jpeg,png,jpg,gif,svg'
+        ]);
+
         $data = $request->all();
         $product = new Product;
 
@@ -58,7 +64,9 @@ class ProductsController extends Controller
         $product->save();
 
         if ($request->hasFile('image')) {
-            $request->file('image')->move(public_path('/files/products'), sprintf('%s.%s', $product->id, $extension));
+            $image = Image::make($request->file('image'));
+            $image->resize(300,300);
+            $image->save(public_path('/files/products/').$product->id.'.'.$extension);
         }
 
         return redirect()->route('home')->with('flash.success', 'Produto cadastrado com sucesso');
@@ -129,7 +137,7 @@ class ProductsController extends Controller
             unlink(public_path('/files/products/'.$product->id.'.'.$product->img_extension));
         }
         $product->delete();
-        
+
         return redirect()->route('home')->with('flash.success', 'Produto deletado com sucesso');
     }
 
@@ -145,7 +153,7 @@ class ProductsController extends Controller
     {
         $product->locked = false;
         $product->save();
-        
+
         return redirect()->route('home')->with('flash.success', 'Produto desbloqueado com sucesso');
     }
 }
