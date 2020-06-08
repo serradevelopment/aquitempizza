@@ -4,11 +4,11 @@
     <!-- Basic -->
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="copyright" content="Aqui Tem Pizza" />
-    <title>Aquitempizza - Pizzaria em Valença RJ</title>  
-    
+    <title>Aquitempizza - Pizzaria em Valença RJ</title>
+
     <meta name="keywords" content="Aqui tem pizza, pizzaria valença rj, delivery de pizza, pizzaria valença, pizzaria valenca rj, aquitempizza" />
     <meta name="description" content="O verdadeiro delivery de pizza é aqui! Venha conhecer e faça já o seu pedido! Aqui Tem Pizza Delivery em Valença - RJ.">
     <meta name="author" content="contato@serradev.com.br">
@@ -18,7 +18,7 @@
     <meta name="Classification" content="WebSites">
     <meta name="image" content="https://www.aquitempizza.com/images/aquitempizza.png"/>
 
-    
+
     <!-- Open Graph meta -->
     <meta property="og:title" content="Aqui Tem Pizza"/>
     <meta property="og:type" content="website" />
@@ -90,7 +90,7 @@
         <div class="container center ">
             <div class="row">
                 <lottie-player src="https://assets4.lottiefiles.com/temp/lf20_7bMJGd.json"  background="transparent"  speed="1"  style="width: 100%; height: 100%;"  loop autoplay >
-                </lottie-player>             
+                </lottie-player>
             </div>
         </div>
 
@@ -107,7 +107,7 @@
                     <div >
                         <a class="logo" href="#"><img src="images/aquitempizza.png" alt="Logo"></a>
                     </div>
-                    <div class="right-area" style="position: fixed; bottom: 0;right: 0;left: 0">
+                    <div class="right-area" style="position: fixed; bottom: 110px;right: 0;left: 0;">
                         <cart :freights="{{ json_encode(App\Freight::all()) }}"></cart>
 
                     </div><!-- right-area -->
@@ -149,8 +149,8 @@
                                     </div>
                                     <div class="media-body">
                                         <h3 class="heading">O preparo</h3>
-                                        <p>Uma pizza gostosa não é feita só de massa, molho e recheio.  
-                                            É preciso  conhecimento para  saber os sabores que combinam,  as quantidades na medida certa para que não haja excessos, forno  no tempo certo e a pizza assada no ponto correto.  
+                                        <p>Uma pizza gostosa não é feita só de massa, molho e recheio.
+                                            É preciso  conhecimento para  saber os sabores que combinam,  as quantidades na medida certa para que não haja excessos, forno  no tempo certo e a pizza assada no ponto correto.
                                         Além de tudo isso, também é preciso muito carinho, dedicação, criatividade e um ingrediente secreto... muito amor ao fazer e montar as pizzas.</p>
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@
                 <div class="container">
                     <div class="heading">
                         <img class="heading-img" src="images/heading_logo.png" alt="">
-                        <h2>Nosso Menu</h2>
+                        <h2>Nosso Cardápio</h2>
                     </div>
 
                     <div class="row">
@@ -217,7 +217,7 @@
                             <ul class="selecton brdr-b-primary mb-15">
                                 <li><a class="active" href="#" data-select="PIZZAS"><b>PIZZAS</b></a></li>
                                 <li><a href="#" id="bebidas" data-select="BEBIDAS"><b>BEBIDAS</b></a></li>
-                                <li><a  href="#" id="montar" data-select="MONTAR"><b>MONTE SUA PIZZA</b></a></li>
+                                <li><a  href="#" id="montar" data-select="MONTAR"><b>MONTAR UMA PIZZA METADE/ METADE</b></a></li>
                             </ul>
                         </div><!--col-sm-12-->
                     </div><!--row-->
@@ -239,33 +239,33 @@
                                 <p class="underline-secondary"><b>Endereço:</b></p>
                                 <p>Rodovia RJ 145, nº 26415, Canteiro - Valença RJ </p>
                             </div>
-        
+
                             <div class="pt-30 col-md-4">
                                 <p class="underline-secondary mb-10"><b>Telefone:</b></p>
-                                <a href="tel:+55 24 998160954 ">(24) 99816-0954 </a> | 
+                                <a href="tel:+55 24 998160954 ">(24) 99816-0954 </a> |
                                 <a href="tel:+55 24 24535000 ">(24) 2453-5000 </a>
                             </div>
-        
+
                             <div class="pt-30 col-md-4">
                                 <p class="underline-secondary mb-10"><b>Email:</b></p>
                                 <a href="mailto:aquitempizzas@gmail.com"> aquitempizzas@gmail.com</a>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <ul class="icon mt-30" style="margin:auto">
                                 <li><a href="https://www.facebook.com/aquitempizza" target="_blank"><i class="ion-social-facebook"></i></a></li>
                             </ul>
                         </div>
-                   
+
                         <div class="row">
-                            <p class="color-light font-9 mt-50 mt-sm-30 mb-10" style="margin:auto"> 
+                            <p class="color-light font-9 mt-50 mt-sm-30 mb-10" style="margin:auto">
                                 Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                                Todos direitos reservados | Este site foi desenvolvido por  
-                                <a href="https://www.serradev.com.br" target="_blank">Serra Development</a> 
+                                Todos direitos reservados | Este site foi desenvolvido por
+                                <a href="https://www.serradev.com.br" target="_blank">Serra Development</a>
                             </p>
                         </div>
-                    
+
                 </div><!-- container -->
             </footer>
         </div>
@@ -280,10 +280,10 @@
 
         <script type="text/javascript">
             $(document).ready(function(){
-             setInterval(function(){ 
+             setInterval(function(){
                 $("#pre-load").css('display','none');
                 $(".body").css('display','block');
-            }, 2000); 
+            }, 2000);
          });
      </script>
 

@@ -19,7 +19,8 @@
             <div class="row">
               <div class="col-md-6 offset-md-6 col-xs-12">
                 <button @click="addToCart(p)" style class="m-10 btn-brdr-primary plr-25">
-                  <b>Pedir</b>
+                    <b v-if="p.category == 'BEBIDAS'">Adicionar</b>
+                    <b v-else>Pedir</b>
                 </button>
               </div>
             </div>

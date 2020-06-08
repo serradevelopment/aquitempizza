@@ -35,6 +35,22 @@ $class = 'active';
     </a>
 </li>
 
+{{-- ADICIONAIS --}}
+@php
+    $class = '';
+
+    if ($controller == 'AdditionalsController') {
+    $class = 'active';
+    }
+@endphp
+
+<li class="nav-item {{ $class }}">
+    <a href="{{ route('additionals.index') }}" class="nav-link ">
+        <i class="fas fa-plus"></i>
+        <p>Adicionais</p>
+    </a>
+</li>
+
 {{-- USUARIO --}}
 @php
 $class = 'collapsed';
@@ -52,7 +68,7 @@ $class = 'active show';
     <div class="{{ $class }} collapse collapsed " id="submenu">
         <ul class="nav nav-collapse">
 
-         @can('index', \App\User::class)    
+         @can('index', \App\User::class)
          @php
          $class = '';
 
@@ -72,7 +88,7 @@ $class = 'active show';
         @php
         $class = '';
 
-        if ($controller == 'UsersController' && $action == 'profile') 
+        if ($controller == 'UsersController' && $action == 'profile')
         {
             $class = 'active';
         }

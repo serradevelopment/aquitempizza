@@ -28,5 +28,6 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
 		return App\Product::all()->toJson();
 	});
 	Route::resource('/products', 'ProductsController');
-	Route::resource('/freights', 'FreightsController');
+    Route::resource('/freights', 'FreightsController');
+    Route::resource('/additionals', 'AdditionalsController');
 });

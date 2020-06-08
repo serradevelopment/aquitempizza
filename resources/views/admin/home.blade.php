@@ -214,7 +214,8 @@
 			<table class="table table-hover" id="orders-list">
 				<thead>
 					<tr>
-						<th>Cliente</th>
+                        <th>#</th>
+                        <th>Cliente</th>
 						<th data-orderable="false">Endereço</th>
 						<th data-orderable="false">Bairro</th>
 						<th data-orderable="false">Data</th>
@@ -233,7 +234,8 @@
 					@endphp
 
 					<tr class="{{ $class }}">
-						<td>{{ $u->client_name }}</td>
+                        <td>{{ $u->id }}</td>
+                        <td>{{ $u->client_name }}</td>
 						<td>{{ $u->client_address }}</td>
 						<td>{{ $u->freight->neighborhood }}</td>
 						<td>{{ date('d/m/Y H:m',strtotime($u->created_at))}}</td>
@@ -298,7 +300,8 @@
 			<table class="table table-hover" id="products-list">
 				<thead>
 					<tr>
-						<th data-orderable="false"></th>
+                        <th>#</th>
+                        <th data-orderable="false"></th>
 						<th>Nome</th>
 						<th>Descrição</th>
 						<th>Preço</th>
@@ -316,6 +319,7 @@
 					@endphp
 
 					<tr class="{{ $class }}">
+                        <td>{{$u->id}}</td>
 						<td><img src="/files/products/{{$u->id}}.{{$u->img_extension}}"
 								style="height: 120px; width: auto"> </td>
 						<td>{{ $u->name }}</td>
@@ -366,8 +370,8 @@
 
 @section('js')
 <script type="text/javascript">
-	$('#products-list').DataTable();	
-	$('#orders-list').DataTable();	
+	$('#products-list').DataTable();
+	$('#orders-list').DataTable();
 
 	function setEditProductData(product)
 	{
@@ -399,7 +403,7 @@
 		html_products = "";
 		for (let index = 0; index < order.products.length; index++) {
 			html_products += "<div class='col-md-6'><label><b>Item "+(parseInt(index)+1)+": </b></label><p>"+order.products[index].name+" | R$ "+order.products[index].value.toFixed(2)+"</p></div>";
-			
+
 		}
 		$('#order-products').html(html_products);
 

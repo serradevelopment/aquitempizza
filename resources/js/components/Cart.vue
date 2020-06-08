@@ -1,13 +1,8 @@
 <template>
-  <div class="dropdown">
-    <button
-      class="plr-20 color-white btn-primaryc"
-      type="button"
-      id="dropdownMenu2"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    >FINALIZAR</button>
+  <div class="dropdown" v-show="productsInCart.length != 0" >
+  <img src="/images/motoboy.png" id="dropdownMenu2" data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false" style="width: 200px; height: 200px; cursor: pointer">
 
     <ul
       class="dropdown-menu dropdown-cart"
@@ -256,22 +251,30 @@ export default {
   -webkit-transition: max-height 0.8s;
   -moz-transition: max-height 0.8s;
   transition: max-height 0.8s;
-  animation: SHW 0.5s;
-  animation-fill-mode: both;
+  animation: SHW 2.5s;
+    -webkit-animation-fill-mode: forwards; /* Chrome 16+, Safari 4+ */
+    -moz-animation-fill-mode: forwards;    /* FF 5+ */
+    -o-animation-fill-mode: forwards;      /* Not implemented yet */
+    -ms-animation-fill-mode: forwards;     /* IE 10+ */
+    animation-fill-mode: forwards;         /* When the spec is finished */
 }
 
 @keyframes SHW {
-  0% {
-    transform: scale(0.2);
-    opacity: 0;
+    0% {
+        left: 0%;
+    }
+  59% {
+      left: -100%;
+      opacity: 0;
   }
-  50% {
-    transform: scale(2);
-    opacity: 0.5;
+  60% {
+    left: 100%;
+      opacity: 0;
+
   }
   100% {
-    transform: scale(1);
-    opacity: 1;
+      left: 0%;
+      opacity: 1;
   }
 }
 
