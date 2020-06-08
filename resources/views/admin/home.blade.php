@@ -34,7 +34,14 @@
 
 					{{ Form::bsSelect('tag', 'Adicione uma etiqueta', ['PROMOÇÃO'=>'PROMOÇÃO','ESPECIAL'=>'ESPECIAL','FRETE GRÁTIS'=>'FRETE GRÁTIS'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-create','class'=>'select-2']) }}
 
-					{{ Form::bsSelect('is_top', 'Mais vendido?', ['NÃO','SIM'],['placeholder' => 'Selecione uma opção','id'=>'is_top-product-create','required'=>true]) }}
+                    <div class="form-group">
+                        <label for="is_top">Mais vendido?</label>
+
+                        <select id="is_top-product-create" required="" class="form-control" name="is_top">
+                            <option value="0" selected="selected">NÃO</option>
+                            <option value="1">SIM</option>
+                        </select>
+                    </div>
 
 				</div>
 				<div class="modal-footer">
