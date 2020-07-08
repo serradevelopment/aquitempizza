@@ -90,7 +90,7 @@
               <span
                   style="color: black;padding: 10px;float: right;"
                   v-if="user.neighborhood.value != null"
-              >Frete: R$ {{user.neighborhood.value.toFixed(2)}}</span>
+              >Frete: R$ {{(configuration.is_freight_unique)?configuration.freight_value:user.neighborhood.value.toFixed(2)}}</span>
                         </div>
 
                         <li>
@@ -124,7 +124,7 @@
 
 <script>
     export default {
-        props: ["freights"],
+        props: ["freights", "configuration"],
         data() {
             return {
                 troco: 0,
@@ -147,7 +147,8 @@
                 for (var i = this.productsInCart.length - 1; i >= 0; i--) {
                     total += this.productsInCart[i].value;
                 }
-                total += this.user.neighborhood.value;
+                total += ((this.configuration.is_freight_unique)?this.configuration.freight_value:this.user.neighborhood.value);
+                console.log(total)
                 return total.toFixed(2);
             }
         },
@@ -191,7 +192,7 @@
                         text += "ENDEREÇO: " + this.user.address + "\n";
                         text += "BAIRRO: " + this.user.neighborhood.neighborhood + "\n";
                         text += "*----------------PAGAMENTO--------------*\n";
-                        text += "FRETE: R$ " + this.user.neighborhood.value.toFixed(2) + "\n";
+                        text += "FRETE: R$ " + ((this.configuration.is_freight_unique)?this.configuration.freight_value: this.user.neighborhood.value.toFixed(2)) + "\n";
                         if (this.troco != 0) {
                             text += " | Troco para: R$" + this.troco;
                             text += "\nTroco: R$" + (this.troco - this.getTotalCartValue).toFixed(2);

@@ -14,7 +14,7 @@
         <h4 class="mt-5">
           <b>R$ {{Number(p.value).toFixed(2)}}</b>
         </h4>
-        <h6 class="mt-20">
+        <h6 class="mt-20" v-if="configuration.is_online">
           <button @click="addToCart(p)" class="btn-brdr-primary plr-25">
             <b>Pedir</b>
           </button>
@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  props: ["products"],
+  props: ["products","configuration"],
   methods: {
     getImgUrl(p) {
       var image = "/files/products/" + p.id + "." + p.img_extension;

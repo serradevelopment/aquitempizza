@@ -16,7 +16,7 @@
               <b class="color-primary float-right">R$ {{p.value.toFixed(2)}}</b>
             </h5>
             <p class>{{p.description}}</p>
-            <div class="row">
+            <div class="row" v-if="configuration.is_online">
               <div class="col-md-6 offset-md-6 col-xs-12">
                 <button @click="addToCart(p)" style class="m-10 btn-brdr-primary plr-25">
                     <b v-if="p.category == 'BEBIDAS'">Adicionar</b>
@@ -46,12 +46,12 @@
             <h5>Valor da pizza: {{mounted.value.toFixed(2)}}</h5>
             <button
               class="mt-10 btn btn-success"
-              v-if="count == 1 || count == 2"
+              v-if="count == 1 || count == 2 && configuration.is_online"
               @click="cancelMounted()"
             >Cancelar</button>
             <button
               class="mt-10 btn btn-success"
-              v-if="count == 2"
+              v-if="count == 2 && configuration.is_online"
               @click="addToCart(mounted)"
             >Adicionar ao pedido</button>
           </div>
@@ -102,7 +102,7 @@
 
 <script>
 export default {
-  props: ["products"],
+  props: ["products","configuration"],
   data() {
     return {
       mounted: null,
