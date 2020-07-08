@@ -26,6 +26,7 @@ import Vuex from 'vuex';
 Vue.component('tops', require('./components/Tops.vue').default);
 Vue.component('cart', require('./components/Cart.vue').default);
 Vue.component('product-list', require('./components/ProductList.vue').default);
+Vue.component('btn-call-cart', require('./components/ButtonCallCart.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -37,7 +38,7 @@ Vue.component('product-list', require('./components/ProductList.vue').default);
  	state: {
  		cart:{
  			products: [],
- 			total: 0	
+ 			total: 0
  		}
 
  	}

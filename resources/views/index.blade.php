@@ -86,6 +86,9 @@
 </head>
 
 <body>
+<div  >
+
+
     <div id="pre-load" >
         <div class="container center ">
             <div class="row">
@@ -99,17 +102,18 @@
     <!-- <h6><a class="plr-20 color-white btn-fill-primary" href="https://api.whatsapp.com/send?phone=5524998160954&text=Olá, gostaria de fazer um pedido." target="_blank">Pedidos: (24) 99816-0954</a></h6> -->
 
 
-    <div class="body" style="display: none"  >
-        <div id="app">
+    <div id="app" class="body" style="display: none"  >
+        <cart :freights="{{ json_encode(App\Freight::all()) }}"></cart>
+
+        <div >
 
             <header>
                 <div class="container">
                     <div >
                         <a class="logo" href="#"><img src="images/aquitempizza.png" alt="Logo"></a>
                     </div>
-                    <div class="right-area" style="position: fixed; bottom: 110px;right: 0;left: 0;">
-                        <cart :freights="{{ json_encode(App\Freight::all()) }}"></cart>
-
+                    <div class="right-area" style="position: fixed; bottom: 80px;right: 0;left: 0;">
+                        <btn-call-cart></btn-call-cart>
                     </div><!-- right-area -->
 
                     <div class="clearfix"></div>
@@ -131,65 +135,65 @@
             </section>
 
 
-            <section class="story-area left-text center-sm-text pos-relative">
-                <div class="abs-tbl bg-2 w-20 z--1 dplay-md-none" ></div>
-                <div class="abs-tbr bg-3 w-20 z--1 dplay-md-none"></div>
-                <div class="container">
-                    <div class="heading">
-                        <img class="heading-img" src="images/heading_logo.png" alt="">
-                        <h2>Porque comprar conosco?</h2>
-                    </div>
+{{--            <section class="story-area left-text center-sm-text pos-relative">--}}
+{{--                <div class="abs-tbl bg-2 w-20 z--1 dplay-md-none" ></div>--}}
+{{--                <div class="abs-tbr bg-3 w-20 z--1 dplay-md-none"></div>--}}
+{{--                <div class="container">--}}
+{{--                    <div class="heading">--}}
+{{--                        <img class="heading-img" src="images/heading_logo.png" alt="">--}}
+{{--                        <h2>Porque comprar conosco?</h2>--}}
+{{--                    </div>--}}
 
-                    <div class="row">
-                        <div class="col-md-4" style="margin-top: 15px">
-                            <div class=" ftco-animate fadeInUp ftco-animated card-pcc">
-                                <div class="media d-block text-center block-6 services">
-                                    <div class="icon d-flex justify-content-center align-items-center mb-5">
-                                        <img src="images/receita.png" style="height: 70px; width: auto">
-                                    </div>
-                                    <div class="media-body">
-                                        <h3 class="heading">O preparo</h3>
-                                        <p>Uma pizza gostosa não é feita só de massa, molho e recheio.
-                                            É preciso  conhecimento para  saber os sabores que combinam,  as quantidades na medida certa para que não haja excessos, forno  no tempo certo e a pizza assada no ponto correto.
-                                        Além de tudo isso, também é preciso muito carinho, dedicação, criatividade e um ingrediente secreto... muito amor ao fazer e montar as pizzas.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" style="margin-top: 15px">
+{{--                    <div class="row">--}}
+{{--                        <div class="col-md-4" style="margin-top: 15px">--}}
+{{--                            <div class=" ftco-animate fadeInUp ftco-animated card-pcc">--}}
+{{--                                <div class="media d-block text-center block-6 services">--}}
+{{--                                    <div class="icon d-flex justify-content-center align-items-center mb-5">--}}
+{{--                                        <img src="images/receita.png" style="height: 70px; width: auto">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="media-body">--}}
+{{--                                        <h3 class="heading">O preparo</h3>--}}
+{{--                                        <p>Uma pizza gostosa não é feita só de massa, molho e recheio.--}}
+{{--                                            É preciso  conhecimento para  saber os sabores que combinam,  as quantidades na medida certa para que não haja excessos, forno  no tempo certo e a pizza assada no ponto correto.--}}
+{{--                                        Além de tudo isso, também é preciso muito carinho, dedicação, criatividade e um ingrediente secreto... muito amor ao fazer e montar as pizzas.</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-4" style="margin-top: 15px">--}}
 
-                            <div class=" ftco-animate fadeInUp ftco-animated card-pcc">
-                                <div class="media d-block text-center block-6 services">
-                                    <div class="icon d-flex justify-content-center align-items-center mb-5">
-                                        <img src="images/entregador.png" style="height: 70px; width: auto">
-                                    </div>
-                                    <div class="media-body">
-                                        <h3 class="heading">A entrega</h3>
-                                        <p>Nós sabemos da sua fome! Pensamos no melhor para nossos clientes de Valença, e além do atendimento especial, tivemos o cuidado de contratar os melhores entregadores para que a pizza chegue em sua residência quentinha e saborosa, do jeito que você espera!</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" style="margin-top: 15px">
+{{--                            <div class=" ftco-animate fadeInUp ftco-animated card-pcc">--}}
+{{--                                <div class="media d-block text-center block-6 services">--}}
+{{--                                    <div class="icon d-flex justify-content-center align-items-center mb-5">--}}
+{{--                                        <img src="images/entregador.png" style="height: 70px; width: auto">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="media-body">--}}
+{{--                                        <h3 class="heading">A entrega</h3>--}}
+{{--                                        <p>Nós sabemos da sua fome! Pensamos no melhor para nossos clientes de Valença, e além do atendimento especial, tivemos o cuidado de contratar os melhores entregadores para que a pizza chegue em sua residência quentinha e saborosa, do jeito que você espera!</p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-4" style="margin-top: 15px">--}}
 
-                            <div class=" ftco-animate fadeInUp ftco-animated card-pcc" >
-                                <div class="media d-block text-center block-6 services">
-                                    <div class="icon d-flex justify-content-center align-items-center mb-5">
-                                        <img src="images/pizza.png" style="height: 70px; width: auto">
-                                    </div>
-                                    <div class="media-body">
-                                        <h3 class="heading">O sabor</h3>
-                                        <p>Nosso molho é totalmente artesanal, com tomates italianos e manjericão selecionados e frescos.
-                                            Os produtos utilizados nos caprichados recheios são de marcas conhecidas e manuseados com padrão de higiene correto.
-                                        Por tudo isso, as pizzas da Aqui Tem Pizza são gostosas e com sabores inigualáveis e fantásticos, que enchem os olhos dos nossos Clientes e satisfazem suas vontades e desejos.   </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{{--                            <div class=" ftco-animate fadeInUp ftco-animated card-pcc" >--}}
+{{--                                <div class="media d-block text-center block-6 services">--}}
+{{--                                    <div class="icon d-flex justify-content-center align-items-center mb-5">--}}
+{{--                                        <img src="images/pizza.png" style="height: 70px; width: auto">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="media-body">--}}
+{{--                                        <h3 class="heading">O sabor</h3>--}}
+{{--                                        <p>Nosso molho é totalmente artesanal, com tomates italianos e manjericão selecionados e frescos.--}}
+{{--                                            Os produtos utilizados nos caprichados recheios são de marcas conhecidas e manuseados com padrão de higiene correto.--}}
+{{--                                        Por tudo isso, as pizzas da Aqui Tem Pizza são gostosas e com sabores inigualáveis e fantásticos, que enchem os olhos dos nossos Clientes e satisfazem suas vontades e desejos.   </p>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
-                </div><!-- container -->
-            </section>
+{{--                </div><!-- container -->--}}
+{{--            </section>--}}
 
 
             <section class="story-area bg-seller color-white pos-relative">
@@ -205,27 +209,26 @@
             </section>
 
 
-            <section>
-                <div class="container">
-                    <div class="heading">
-                        <img class="heading-img" src="images/heading_logo.png" alt="">
-                        <h2>Nosso Cardápio</h2>
-                    </div>
+            <div class="container">
+                <div class="heading">
+                    <img class="heading-img" src="images/heading_logo.png" alt="">
+                    <h2>Nosso Cardápio</h2>
+                </div>
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <ul class="selecton brdr-b-primary mb-15">
-                                <li><a class="active" href="#" data-select="PIZZAS"><b>PIZZAS</b></a></li>
-                                <li><a href="#" id="bebidas" data-select="BEBIDAS"><b>BEBIDAS</b></a></li>
-                                <li><a  href="#" id="montar" data-select="MONTAR"><b>MONTAR UMA PIZZA METADE/ METADE</b></a></li>
-                            </ul>
-                        </div><!--col-sm-12-->
-                    </div><!--row-->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="selecton brdr-b-primary mb-15">
+                            <li><a class="active" href="#" data-select="PIZZAS"><b>PIZZAS</b></a></li>
+                            <li><a href="#" id="bebidas" data-select="BEBIDAS"><b>BEBIDAS</b></a></li>
+                            <li><a  href="#" id="montar" data-select="MONTAR"><b>MONTAR UMA PIZZA METADE/ METADE</b></a></li>
+                        </ul>
+                    </div><!--col-sm-12-->
+                </div><!--row-->
 
-                    <product-list :products="{{json_encode(App\Product::where('locked',false)->get())}}"></product-list>
-                </section>
+                <product-list :products="{{json_encode(App\Product::where('locked',false)->get())}}"></product-list>
 
             </div>
+    </div>
 
             <footer class="pb-50  pt-70 pos-relative">
                 <div class="pos-top triangle-bottom"></div>
@@ -267,6 +270,7 @@
                         </div>
 
                 </div><!-- container -->
+                </div>
             </footer>
         </div>
 
