@@ -30,4 +30,5 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
 	Route::resource('/products', 'ProductsController');
     Route::resource('/freights', 'FreightsController');
     Route::resource('/additionals', 'AdditionalsController');
+    Route::resource('/configurations', 'ConfigurationsController');
 });

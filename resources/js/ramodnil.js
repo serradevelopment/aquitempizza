@@ -21,8 +21,8 @@ $('form').each((index, form) => {
         $(form).submit(() => {
             if ($(form).valid()) {
                 var submitButton = $(form).find('[type=submit]');
-    
-                submitButton.html('<i class="fa fa-circle-notch fa-spin"></i>');            
+
+                submitButton.html('<i class="fa fa-circle-notch fa-spin"></i>');
                 submitButton.attr('disabled', 'disabled');
             }
         });
@@ -62,10 +62,12 @@ $('.select-2').select2({
 
 $('.money-mask').maskMoney({
     prefix: 'R$ ',
-    allowNegative: false,
+    allowNegative: true,
     thousands: '.',
     decimal: ',',
-});
+    affixesStay: false,
+    allowZero:true
+}).trigger('mask.maskMoney');
 
 $('.number-mask').maskMoney({
     prefix: '',
@@ -171,22 +173,22 @@ function validateCpf(value) {
 
     if (value) {
         value = value.replace(/[^\d]+/g,'');
-    
+
         if (value == "00000000000") return false;
-         
+
         for (i=1; i<=9; i++) Soma = Soma + parseInt(value.substring(i-1, i)) * (11 - i);
         Resto = (Soma * 10) % 11;
-       
+
         if ((Resto == 10) || (Resto == 11))  Resto = 0;
         if (Resto != parseInt(value.substring(9, 10)) ) return false;
-       
+
         Soma = 0;
         for (i = 1; i <= 10; i++) Soma = Soma + parseInt(value.substring(i-1, i)) * (12 - i);
         Resto = (Soma * 10) % 11;
-       
+
         if ((Resto == 10) || (Resto == 11))  Resto = 0;
         if (Resto != parseInt(value.substring(10, 11) ) ) return false;
-    
+
         return true;
     }
 }
@@ -194,24 +196,24 @@ function validateCpf(value) {
 function validateCnpj(cnpj) {
     if (cnpj) {
         cnpj = cnpj.replace(/[^\d]+/g,'');
-     
+
         if(cnpj == '') return false;
-         
+
         if (cnpj.length != 14)
             return false;
-     
-        if (cnpj == "00000000000000" || 
-            cnpj == "11111111111111" || 
-            cnpj == "22222222222222" || 
-            cnpj == "33333333333333" || 
-            cnpj == "44444444444444" || 
-            cnpj == "55555555555555" || 
-            cnpj == "66666666666666" || 
-            cnpj == "77777777777777" || 
-            cnpj == "88888888888888" || 
+
+        if (cnpj == "00000000000000" ||
+            cnpj == "11111111111111" ||
+            cnpj == "22222222222222" ||
+            cnpj == "33333333333333" ||
+            cnpj == "44444444444444" ||
+            cnpj == "55555555555555" ||
+            cnpj == "66666666666666" ||
+            cnpj == "77777777777777" ||
+            cnpj == "88888888888888" ||
             cnpj == "99999999999999")
             return false;
-             
+
         tamanho = cnpj.length - 2
         numeros = cnpj.substring(0,tamanho);
         digitos = cnpj.substring(tamanho);
@@ -225,7 +227,7 @@ function validateCnpj(cnpj) {
         resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
         if (resultado != digitos.charAt(0))
             return false;
-             
+
         tamanho = tamanho + 1;
         numeros = cnpj.substring(0,tamanho);
         soma = 0;
@@ -238,7 +240,7 @@ function validateCnpj(cnpj) {
         resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
         if (resultado != digitos.charAt(1))
               return false;
-               
+
         return true;
     }
 }

@@ -9,12 +9,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	<meta name="robots" content="noindex">
-	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/azzara.min.css') }}">
 	<link rel="stylesheet" href="{{asset('fonts/flaticon/flaticon.css')}}">
 	<!-- Favicon -->
     <link rel="shortcut icon" href="http://www.agenciadedigitadores.online/images/aquitempizza.png" type="image/x-icon" />
-	@yield('adminlte_css')
+
+
+    @yield('adminlte_css')
 </head>
 
 <body class="hold-transition sidebar-mini @yield('body_class')">

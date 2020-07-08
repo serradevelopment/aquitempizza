@@ -43,7 +43,6 @@ $class = 'active';
     $class = 'active';
     }
 @endphp
-
 <li class="nav-item {{ $class }}">
     <a href="{{ route('additionals.index') }}" class="nav-link ">
         <i class="fas fa-plus"></i>
@@ -55,7 +54,7 @@ $class = 'active';
 @php
 $class = 'collapsed';
 
-if ($controller == 'UsersController') {
+if ($controller == 'UsersController' or $controller == 'ConfigurationsController') {
 $class = 'active show';
 }
 @endphp
@@ -98,6 +97,20 @@ $class = 'active show';
                 <p class="sub-item">Perfil</p>
             </a>
         </li>
+
+         @php
+             $class = '';
+
+             if ($controller == 'ConfigurationsController' )
+             {
+                 $class = 'active';
+             }
+         @endphp
+         <li class="{{ $class }}">
+             <a href="{{ route('configurations.index') }}">
+                 <p class="sub-item">Site</p>
+             </a>
+         </li>
     </ul>
 </div>
 </li>
