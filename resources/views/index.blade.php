@@ -150,7 +150,7 @@
                     @if(!$configuration->is_online)
                     <div class="row">
                         <div class="heading m-auto">
-                            <h4>Não estamos recebendo pedido no momento. Nosso horário de atendimento é de 18:00 às 22:30, de quarta-feira à domingo</h4>
+                            <h4>Não estamos recebendo pedido no momento. Nosso horário de atendimento é de 19:45 às 22:45, de quarta á sábado</h4>
                         </div>
                     </div>
                     @endif
