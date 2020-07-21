@@ -160,17 +160,17 @@
             @endif
 
 
-            <section class="story-area bg-seller color-white pos-relative">
-                <div class="pos-bottom triangle-up"></div>
-                <div class="pos-top triangle-bottom"></div>
-                <div class="container">
-                    <div class="heading">
-                        <img class="heading-img" src="images/heading_logo.png" alt="">
-                        <h2>Mais vendidos</h2>
-                    </div>
-                    <tops :products="{{App\Product::where('is_top',true)->get()->toJson()}}" :configuration="{{$configuration}}"></tops>
-                </div>
-            </section>
+{{--            <section class="story-area bg-seller color-white pos-relative">--}}
+{{--                <div class="pos-bottom triangle-up"></div>--}}
+{{--                <div class="pos-top triangle-bottom"></div>--}}
+{{--                <div class="container">--}}
+{{--                    <div class="heading">--}}
+{{--                        <img class="heading-img" src="images/heading_logo.png" alt="">--}}
+{{--                        <h2>Mais vendidos</h2>--}}
+{{--                    </div>--}}
+{{--                    <tops :products="{{App\Product::where('is_top',true)->get()->toJson()}}" :configuration="{{$configuration}}"></tops>--}}
+{{--                </div>--}}
+{{--            </section>--}}
 
 
             <div class="container">
