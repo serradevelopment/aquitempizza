@@ -7,6 +7,7 @@ use App\Order;
 use Illuminate\Http\Request;
 use App\Freight;
 use App\Product;
+use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
@@ -43,13 +44,21 @@ class OrdersController extends Controller
         $products = [];
         foreach($data['products'] as $p){
             $product = Product::find($p['id']);
+            $product['note'] = $p['note']??null;
             array_push($products,$product);
         }
-        
+
         $order = new Order();
         $order->fill($data);
         $order->save();
-        $order->products()->saveMany($products);
+        foreach ($data['products'] as $product){
+
+            DB::table('order_product')->insert([
+                'product_id'=>$product['id'],
+                'order_id'=>$order->id,
+                'note'=>$product['note']??null
+            ]);
+        }
         return response($order);
     }
 

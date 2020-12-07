@@ -214,6 +214,7 @@ header .right-area {
         padding: 10px 0;
         position: relative;
         font-size: 1.2em;
+    background-color: red;
 }
 
 /* HAMBURGER ICON */
@@ -423,6 +424,11 @@ section {
         position: relative;
         text-align: center;
         margin-bottom: 10px;
+        font-family: "Montserrat", Sans-serif;
+        font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -2.1px;
+    font-size: 30px;
 }
 
 .heading-img {

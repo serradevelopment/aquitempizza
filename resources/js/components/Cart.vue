@@ -1,11 +1,11 @@
 <template>
     <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="modalCart" aria-hidden="true"
-         v-if="productsInCart.length != 0">
+         v-if="productsInCart.length != 0 ">
         <!--  <img src="/images/motoboy.png" id="dropdownMenu2" data-toggle="dropdown"-->
         <!--          aria-haspopup="true"-->
         <!--          aria-expanded="false" style="width: 200px; height: 200px; cursor: pointer">-->
         <div class="modal-dialog" role="menu" v-if="productsInCart.length != 0">
-            <div class="modal-content">
+            <div class="modal-content" v-if="!finished">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalCart">Resumo do pedido</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -13,13 +13,18 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <li v-for="(p,i) in productsInCart" :key="i" style="box-shadow: 1px 1px 4px 0px;">
+                    <li v-for="(p,i) in productsInCart" :key="i"
+                        style="box-shadow: 1px 1px 0px 0px;border-radius: 20px;margin-bottom: 10px;">
             <span class="item">
               <span class="item-left">
                 <!-- <img src="http://lorempixel.com/50/50/" alt="" /> -->
                 <span class="item-info">
-                  <span>{{p.name}}</span>
-                  <span>R$ {{p.value.toFixed(2)}}</span>
+                  <span style="font-weight: 900;font-size: large;">{{p.name}}</span>
+                  <span style="font-weight: 900;font-size: medium;">R$ {{p.value.toFixed(2)}}</span>
+                  <span style="font-style: italic;" v-if="p.note">Observação: {{p.note}}</span>
+                  <span style="font-style: bold;font-size: medium" v-if="p.additionals">Adicionais:
+                    <p v-for="a in p.additionals">1x {{a.name}} - R$ {{a.price.toFixed(2)}}</p>
+                  </span>
                 </span>
               </span>
               <span class="item-right" style="margin: 10px;">
@@ -28,18 +33,20 @@
             </span>
                     </li>
                     <li class="divider"></li>
-                    <div style="padding: 10px;  background-color: #f6fe4533;">
+                    <div style="padding: 10px;  background-color:  rgb(246 254 69 / 0%);     margin-top: 20px;">
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
                                     <label>Nome:</label>
-                                    <input type="text" style="width: auto" v-model="user.name" class="form-control"/>
+                                    <input type="text" style="width: -webkit-fill-available;" v-model="user.name"
+                                           class="form-control"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <label>Endereço:</label>
-                                    <input type="text" style="width: auto" v-model="user.address" class="form-control"/>
+                                    <input type="text" style="width: -webkit-fill-available;" v-model="user.address"
+                                           class="form-control"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -93,32 +100,40 @@
               >Frete: R$ {{(configuration.is_freight_unique)?configuration.freight_value:user.neighborhood.value.toFixed(2)}}</span>
                         </div>
 
-                        <li>
-                            <span class="badge badge-info m-2"
-                                style="font-size: 16px;color: black;padding: 10px;float: right; display: inline-flex">Total: R$ {{getTotalCartValue}}</span>
-                        </li>
+                        <button
+                            type="submit"
+                            class="btn btn-success"
+                            @click="sendOrder()"
+                            v-if="user.neighborhood.value != null"
+                        >Enviar Pedido
+                        </button>
 
-                        <li>
-                            <button
-                                type="submit"
-                                class="btn btn-success"
-                                @click="sendOrder()"
-                                v-if="user.neighborhood.value != null"
-                            >Enviar Pedido
-                            </button>
-                        </li>
+                        <span class="badge badge-danger m-2"
+                              style="font-size: 16px;color: white;float: right; display: inline-flex">Total: R$ {{getTotalCartValue}}</span>
                     </div>
                 </div>
 
             </div>
+            <div class="modal-content" v-if="finished">
+                <div class="modal-header">
+                    <h5 class="modal-title">Resumo do pedido</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span class="badge badge-success" style="font-size: large;margin: 15px;">Pedido realizado com sucesso.</span>
+                    <button class="btn btn-primary" style="    margin: 15px;float: right;" @click="finished = false">Novo pedido</button>
+                </div>
+            </div>
 
         </div>
 
-<!--        <ul aria-labelledby="dropdownMenu2" role="menu" v-else>-->
-<!--          <li>-->
-<!--            <h5 style="display: block; text-align: center;margin: auto">Vazio</h5>-->
-<!--          </li>-->
-<!--        </ul>-->
+        <!--        <ul aria-labelledby="dropdownMenu2" role="menu" v-else>-->
+        <!--          <li>-->
+        <!--            <h5 style="display: block; text-align: center;margin: auto">Vazio</h5>-->
+        <!--          </li>-->
+        <!--        </ul>-->
     </div>
 </template>
 
@@ -127,6 +142,7 @@
         props: ["freights", "configuration"],
         data() {
             return {
+                finished: false,
                 troco: 0,
                 is_card: false,
                 user: {
@@ -143,12 +159,9 @@
                 return this.$store.state.cart.products;
             },
             getTotalCartValue() {
-                var total = 0;
-                for (var i = this.productsInCart.length - 1; i >= 0; i--) {
-                    total += this.productsInCart[i].value;
-                }
-                total += ((this.configuration.is_freight_unique)?this.configuration.freight_value:this.user.neighborhood.value);
-                console.log(total)
+                var total = this.$store.getters.getTotal;
+                this.$store.commit('updateTotal', total);
+                total += ((this.configuration.is_freight_unique) ? this.configuration.freight_value : this.user.neighborhood.value);
                 return total.toFixed(2);
             }
         },
@@ -157,15 +170,14 @@
                 return this.user.neighborhood == f.id ? true : false;
             },
             removeFromCart(s) {
-                var index = this.$store.state.cart.products.indexOf(s);
-                if (index > -1) {
-                    this.$store.state.cart.products.splice(index, 1);
-                }
-                if(this.productsInCart.length == 0){
+                this.$store.commit('removeFromCart', s);
+                if (this.productsInCart.length == 0) {
+                    this.$store.commit('updateTotal', 0);
                     $('#modalCart').modal('toggle');
                 }
             },
             storeOrder() {
+                console.log(this.productsInCart)
                 var user = this.user;
                 axios
                     .post("/orders", {
@@ -192,7 +204,7 @@
                         text += "ENDEREÇO: " + this.user.address + "\n";
                         text += "BAIRRO: " + this.user.neighborhood.neighborhood + "\n";
                         text += "*----------------PAGAMENTO--------------*\n";
-                        text += "FRETE: R$ " + ((this.configuration.is_freight_unique)?this.configuration.freight_value: this.user.neighborhood.value.toFixed(2)) + "\n";
+                        text += "FRETE: R$ " + ((this.configuration.is_freight_unique) ? this.configuration.freight_value : this.user.neighborhood.value.toFixed(2)) + "\n";
                         if (this.troco != 0) {
                             text += " | Troco para: R$" + this.troco;
                             text += "\nTroco: R$" + (this.troco - this.getTotalCartValue).toFixed(2);
@@ -206,6 +218,15 @@
                         for (var i = 0; i < this.productsInCart.length; i++) {
                             if (this.productsInCart[i].category == "PIZZAS") {
                                 pizzas += "*1 x " + this.productsInCart[i].name + " = R$" + this.productsInCart[i].value.toFixed(2) + "*\n";
+                                if (this.productsInCart[i].note) {
+                                    pizzas += 'Obs: _' + this.productsInCart[i].note + '_\n';
+                                }
+                                if(this.productsInCart[i].additionals){
+                                    pizzas += 'Adicionais:\n';
+                                    for(var j = 0; j < this.productsInCart[i].additionals.length; j++){
+                                        pizzas += '1x '+this.productsInCart[i].additionals[i].name+'\n';
+                                    }
+                                }
                             }
                             if (this.productsInCart[i].category == "BEBIDAS") {
                                 bebidas += "*1 x " + this.productsInCart[i].name + " = R$" + this.productsInCart[i].value.toFixed(2) + "*\n";
@@ -223,6 +244,7 @@
                             "https://api.whatsapp.com/send?phone=5524998160954&text=" + text;
                         var win = window.open(url, "_blank");
                         win.focus();
+                        this.finished = true;
                     }).catch(error => {
                     console.log(error);
                 });

@@ -35,6 +35,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="fonts/beyond_the_mountains-webfont.css" type="text/css"/>
 
     <!-- Stylesheets -->
@@ -112,7 +113,7 @@
                     <div >
                         <a class="logo" href="#"><img src="images/aquitempizza.png" alt="Logo"></a>
                     </div>
-                    <div class="right-area" style="position: fixed; bottom: 80px;right: 0;left: 0;">
+                    <div class="right-area" style="position: fixed; right: 0;bottom: 0;">
                         <btn-call-cart></btn-call-cart>
                     </div><!-- right-area -->
 
@@ -175,21 +176,29 @@
 
             <div class="container">
                 <div class="heading">
-                    <img class="heading-img" src="images/heading_logo.png" alt="">
-                    <h2>Nosso Cardápio</h2>
+{{--                    <img class="heading-img" src="images/heading_logo.png" alt="">--}}
+                    Nosso Cardápio
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-12">
-                        <ul class="selecton brdr-b-primary mb-15">
-                            <li><a class="active" href="#" data-select="PIZZAS"><b>PIZZAS</b></a></li>
-                            <li><a href="#" id="bebidas" data-select="BEBIDAS"><b>BEBIDAS</b></a></li>
-                            <li><a  href="#" id="montar" data-select="MONTAR"><b>MONTAR UMA PIZZA METADE/ METADE</b></a></li>
+                    <div class="col-md-4">
+                        <ul class="selecton  mb-15">
+                            <li><a style="width: 100%;text-align: justify;"  class="active" href="#" data-select="PIZZAS"><b>PIZZAS</b></a></li>
+                            <li><a style="width: 100%;text-align: justify;" href="#" id="bebidas" data-select="BEBIDAS"><b>BEBIDAS</b></a></li>
+                            <li><a style="width: 100%;text-align: justify;" href="#" id="montar" data-select="MONTAR"><b>MONTAR UMA PIZZA METADE/ METADE</b></a></li>
                         </ul>
                     </div><!--col-sm-12-->
+
+                    <div class="col-md-8">
+                        <product-list :additionals="{{json_encode(App\Additional::all())}}" :products="{{json_encode(App\Product::where('locked',false)->get())}}" :configuration="{{$configuration}}"></product-list>
+                    </div>
                 </div><!--row-->
 
-                <product-list :products="{{json_encode(App\Product::where('locked',false)->get())}}" :configuration="{{$configuration}}"></product-list>
+{{--                <div class="heading">--}}
+{{--                    <img class="heading-img" src="images/heading_logo.png" alt="">--}}
+{{--                    Carrinho--}}
+{{--                </div>--}}
+
 
             </div>
     </div>

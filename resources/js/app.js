@@ -40,8 +40,38 @@ Vue.component('btn-call-cart', require('./components/ButtonCallCart.vue').defaul
  			products: [],
  			total: 0
  		}
+ 	},
+    getters:{
+ 	    getTotal:(state ) => {
+ 	        return state.cart.total;
+        }
+    },
+    mutations: {
+        addToCart: (state, product) => {
+            state.cart.products.push(product);
+            var total = 0;
+            for (var i = state.cart.products.length - 1; i >= 0; i--) {
+                total += state.cart.products[i].value;
 
- 	}
+                for(var j = state.cart.products[i].additionals.length -1;j >= 0; j--){
+                    total += state.cart.products[i].additionals[j].price;
+                }
+            }
+            state.cart.total = total;
+        },
+        removeFromCart:(state,product) => {
+            var index = state.cart.products.indexOf(product);
+
+            if (index > -1) {
+
+                state.cart.total = (state.cart.total - product.value);
+                state.cart.products.splice(index, 1);
+            }
+        },
+        updateTotal:(state,total)=>{
+            state.cart.total = total;
+        }
+    }
  });
 
  const app = new Vue({
